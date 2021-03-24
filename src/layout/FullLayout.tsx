@@ -91,7 +91,7 @@ export const FullLayout = (props: LayoutProps) => {
         <Link className="link" to="/what-is-ar">
           <span>What is AR?</span>
         </Link>
-        <Link className="link" to="/">
+        <Link className="link" to="/contact-us">
           <span>Contact Us</span>
         </Link>
       </SideMenu>
