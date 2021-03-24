@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import styled from "styled-components";
 import { bp } from "../utils/breakpoints";
 
@@ -76,6 +76,8 @@ export interface LayoutProps {
 }
 export const FullLayout = (props: LayoutProps) => {
   const [isSidebarHidden, setIsSidebarHidden] = useState(true);
+  const history = useHistory();
+
   const handleMouseDown = (e: any) => {
     console.log("is this working");
     setIsSidebarHidden(!isSidebarHidden);
@@ -97,7 +99,10 @@ export const FullLayout = (props: LayoutProps) => {
       </SideMenu>
       <nav>
         <div className="w-full flex justify-between bg-white items-center">
-          <header className="text-xl bg-opacity-75 py-6 pl-4 flex-grow">
+          <header
+            className="text-xl bg-opacity-75 py-6 pl-4 flex-grow"
+            onClick={() => history.push("/")}
+          >
             SUN-SPOT
           </header>
           <div
