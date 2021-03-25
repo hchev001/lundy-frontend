@@ -1,83 +1,23 @@
 import styled from "styled-components";
 import { bp } from "../utils/breakpoints";
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { Link, useHistory } from "react-router-dom";
 import { FullLayout } from "../layout/FullLayout";
-const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  width: 100%;
-  
-  @media ${bp.md} {
-    display: grid;
-    grid-template-columns: 200px 1fr 200px;
-    grid-template-rows: auto 1fr 0fr;
-  }
+import { useDispatch } from "react-redux";
+import { actions, Transitions } from "../store/modules/Events";
 
-  nav {
-      grid-column: span 3;
-      background-color: #369;
-  }
-
-  main {
-      flex: 1;
-      @media ${bp.md} {
-          grid-column-start:2;
-      }
-  }
-
-
-  footer {
-      grid-column: span 3;
-      background-color: #690;
-  }
-
-  aside {
-    grid-column-start:3;
-  }
-
-  .left {
-      grid-column-start:1;
-  }
-}
-`;
-
-type SideMenuProps = { hide: boolean };
-const SideMenu = styled.div<SideMenuProps>`
-    position: fixed;
-  left: 0;
-  top: 0;
-  background-color: black;
-  transition: transform 0.3s cubic-bezier(0, 0.52, 0, 1);
-  overflow: ${(props) => (props.hide ? "scroll" : "hidden")}
-  z-index: 1599;
-  height: 100vh;
-  width: 100vw;
-  transform: ${(props) =>
-    props.hide ? "translate3d(-100vw, 0, 0)" : "translate3d(0vw, 0, 0)"}
-  }
-  display: flex;
-  flex-direction: column;
-  padding-top: 25px;
-  padding-left: 35px;
-
-  .link {
-      color: white;
-      max-width: 145px;
-      font-size: 1.5rem;
-      text-decoration: none;
-      padding-bottom: 2rem;
-  }
-`;
 export const Disclaimer = () => {
   const [isSidebarHidden, setIsSidebarHidden] = useState(true);
-  const handleMouseDown = (e: any) => {
-    console.log("is this working");
-    setIsSidebarHidden(!isSidebarHidden);
+  const history = useHistory();
+  const dispatch = useDispatch();
 
-    e.preventDefault();
-  };
+  useEffect(() => {
+    dispatch(actions.visitPage(new Date()));
+
+    return () => {
+      dispatch(actions.leavePage("messagePage1Timer", new Date()));
+    };
+  }, []);
   return (
     <FullLayout>
       <div className="w-full flex justify-center">
@@ -143,6 +83,7 @@ export const Disclaimer = () => {
         <button
           type="button"
           className="mt-4 inline-flex justify-center w-full rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2"
+          onClick={() => history.push("/survey/1")}
         >
           Next
         </button>

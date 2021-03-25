@@ -1,13 +1,33 @@
-import { configureStore, ThunkAction, Action } from "@reduxjs/toolkit";
-import counterReducer from "./modules";
-export const store = configureStore({
-  reducer: { counter: counterReducer },
-});
+import {
+  createStore,
+  compose,
+  applyMiddleware,
+  combineReducers,
+  Store,
+} from "redux";
+import logger from "redux-logger";
+import thunk from "redux-thunk";
+import EventReducer, { EventState } from "./modules/Events";
+import { composeWithDevTools } from "redux-devtools-extension";
 
-export type RootState = ReturnType<typeof store.getState>;
-export type AppThunk<ReturnType = void> = ThunkAction<
-  ReturnType,
-  RootState,
-  unknown,
-  Action<string>
->;
+interface ApplicationState {
+  events: EventState;
+}
+const CombinedReducer = () => combineReducers({ events: EventReducer });
+
+const configureStoreDev = (): Store<ApplicationState> => {
+  const composeEnhancers = composeWithDevTools({});
+  // const store = createStore(
+  //   CombinedReducer(),
+  //   composeEnhancers(applyMiddleware(thunk, logger))
+  // );
+
+  const store = createStore(
+    CombinedReducer(),
+    composeWithDevTools(applyMiddleware(thunk, logger))
+  );
+
+  return store;
+};
+
+export default configureStoreDev;

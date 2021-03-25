@@ -3,11 +3,15 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import reportWebVitals from "./reportWebVitals";
 import { Provider } from "react-redux";
-import { store } from "./store";
+import configureStore from "./store";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { IndexRoutes } from "./routes";
+
+const store = configureStore();
 ReactDOM.render(
   <React.StrictMode>
+    {/* 
+    //@ts-ignore */}
     <Provider store={store}>
       <Router>
         <Switch>

@@ -79,7 +79,7 @@ export const FullLayout = (props: LayoutProps) => {
   const history = useHistory();
 
   const handleMouseDown = (e: any) => {
-    console.log("is this working");
+;
     setIsSidebarHidden(!isSidebarHidden);
 
     e.preventDefault();
