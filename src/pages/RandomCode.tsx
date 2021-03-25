@@ -3,7 +3,7 @@ import { FullLayout } from "../layout/FullLayout";
 export const RandomCode: React.FC = () => {
   return (
     <FullLayout>
-      <div>Hello6</div>
+      <div>Random Code</div>
       <div>
         <button
           type="button"

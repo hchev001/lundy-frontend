@@ -16,12 +16,6 @@ interface ApplicationState {
 const CombinedReducer = () => combineReducers({ events: EventReducer });
 
 const configureStoreDev = (): Store<ApplicationState> => {
-  const composeEnhancers = composeWithDevTools({});
-  // const store = createStore(
-  //   CombinedReducer(),
-  //   composeEnhancers(applyMiddleware(thunk, logger))
-  // );
-
   const store = createStore(
     CombinedReducer(),
     composeWithDevTools(applyMiddleware(thunk, logger))

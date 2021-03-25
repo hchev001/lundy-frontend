@@ -1,8 +1,20 @@
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { FullLayout } from "../layout/FullLayout";
+import { actions, PageNames } from "../store/modules/Events";
 
 export const WhatIsAR = () => {
   const history = useHistory();
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(actions.visitPage(new Date()));
+
+    return () => {
+      dispatch(actions.leavePage(PageNames.AR_PAGE, new Date()));
+    };
+  });
   const handleGoBack = () => {
     history.goBack();
   };

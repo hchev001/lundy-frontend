@@ -23,6 +23,14 @@ export interface EventState {
   messagePage3Timer: number;
   startTime: number;
   endTime: number;
+  contactUsTimer: number;
+  whatIsARTimer: number;
+  consentFormTimer: number;
+  noOldTime: number;
+  noMoleTime: number;
+  touchCountMenu1: number;
+  touchCountMenu2: number;
+  touchCountMenu3: number;
 }
 
 const initialState: EventState = {
@@ -34,9 +42,11 @@ const initialState: EventState = {
   mole1FilterViewed: false,
   mole2FilterViewed: false,
   mole3FilterViewed: false,
+  noOldTime: 0,
   old1Time: 0,
   old2Time: 0,
   old3Time: 0,
+  noMoleTime: 0,
   mole1Time: 0,
   mole2Time: 0,
   mole3Time: 0,
@@ -44,17 +54,46 @@ const initialState: EventState = {
   messagePage1Timer: 0,
   messagePage2Timer: 0,
   messagePage3Timer: 0,
+  contactUsTimer: 0,
+  whatIsARTimer: 0,
+  consentFormTimer: 0,
   endTime: 0,
   surveyId: "",
+  touchCountMenu1: 0,
+  touchCountMenu2: 0,
+  touchCountMenu3: 0,
 };
 
 export enum Transitions {
   START_SURVEY = "start_survey",
   VISIT_PAGE = "visit_page",
   LEAVE_PAGE = "leave_page",
+
   VIEW_MESSAGE_1_PAGE = "view_message_1_page",
   VIEW_MESSAGE_2_PAGE = "view_message_2_page",
   VIEW_MESSAGE_3_PAGE = "view_message_3_page",
+  VIEW_CONSENT_FORM = "view_consent_form",
+  NO_OLD_FILTER = "noOldTime",
+  CLICK_CONSENT_FORM = "clickConsentForm",
+  CLICK_WHAT_IS_AR = "clickWhatIsAR",
+  CLICK_CONTACT_US = "clickContactUs",
+}
+
+export enum PageNames {
+  MESSAGE_1_PAGE = "messagePage1Timer",
+  MESSAGE_2_PAGE = "messagePage2Timer",
+  MESSAGE_3_PAGE = "messagePage3Timer",
+  OLD_1_FILTER = "old1Time",
+  OLD_2_FILTER = "old2Time",
+  OLD_3_FILTER = "old3Time",
+  NO_OLD_FILTER = "noOldTime",
+  NO_MOLE_FILTER = "noMoleTime",
+  MOLE_1_FILTER = "mole1Time",
+  MOLE_2_FILTER = "mole2Time",
+  MOLE_3_FILTER = "mole3Time",
+  CONSENT_FORM = "consentFormTimer",
+  AR_PAGE = "whatIsARTimer",
+  CONTACT_US_PAGE = "contactUsTimer",
 }
 
 type Action = {
@@ -76,7 +115,7 @@ const EventReducer: Reducer<EventState, Action> = produce(
         break;
       case Transitions.LEAVE_PAGE:
         //@ts-ignore
-        draft[action.pageTimerIndex] = action.time.getTime() - draft.startTime;
+        draft[action.pageTimerIndex] += action.time.getTime() - draft.startTime;
         draft.startTime = 0;
         break;
       case Transitions.VIEW_MESSAGE_1_PAGE:
@@ -102,6 +141,15 @@ const EventReducer: Reducer<EventState, Action> = produce(
       case "VIEW_MOLE_3_FILTER":
         draft.mole3FilterViewed = true;
         break;
+      case Transitions.CLICK_CONSENT_FORM:
+        draft.touchCountMenu2 += 1;
+        break;
+      case Transitions.CLICK_WHAT_IS_AR:
+        draft.touchCountMenu1 += 1;
+        break;
+      case Transitions.CLICK_CONTACT_US:
+        draft.touchCountMenu3 += 1;
+        break;
     }
   },
   initialState
@@ -120,6 +168,9 @@ export const actions = {
   setID: (id: string): Action => ({
     type: "START_SURVEY",
     surveyId: id,
+  }),
+  clickLink: (linkName: Transitions): Action => ({
+    type: linkName,
   }),
 };
 

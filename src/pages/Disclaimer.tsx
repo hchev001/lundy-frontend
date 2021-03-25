@@ -1,23 +1,11 @@
-import styled from "styled-components";
-import { bp } from "../utils/breakpoints";
-import { useEffect, useState } from "react";
-import { Link, useHistory } from "react-router-dom";
+import { useState } from "react";
+import { useHistory } from "react-router-dom";
 import { FullLayout } from "../layout/FullLayout";
-import { useDispatch } from "react-redux";
-import { actions, Transitions } from "../store/modules/Events";
 
 export const Disclaimer = () => {
   const [isSidebarHidden, setIsSidebarHidden] = useState(true);
   const history = useHistory();
-  const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(actions.visitPage(new Date()));
-
-    return () => {
-      dispatch(actions.leavePage("messagePage1Timer", new Date()));
-    };
-  }, []);
   return (
     <FullLayout>
       <div className="w-full flex justify-center">

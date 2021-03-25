@@ -1,9 +1,19 @@
 import { FullLayout } from "../layout/FullLayout";
 import { useHistory } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { useEffect } from "react";
+import { actions, PageNames } from "../store/modules/Events";
 
-interface BaseProps {}
-export const ContactUs = (props: BaseProps) => {
+export const ContactUs = () => {
   const history = useHistory();
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(actions.visitPage(new Date()));
+
+    return () => {
+      dispatch(actions.leavePage(PageNames.CONTACT_US_PAGE, new Date()));
+    };
+  });
   const handleGoBack = () => {
     history.goBack();
   };

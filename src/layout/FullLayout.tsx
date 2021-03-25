@@ -1,6 +1,8 @@
 import { useState } from "react";
+import { useDispatch } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
 import styled from "styled-components";
+import { actions, Transitions } from "../store/modules/Events";
 import { bp } from "../utils/breakpoints";
 
 const Container = styled.div`
@@ -74,28 +76,57 @@ const SideMenu = styled.div<SideMenuProps>`
 export interface LayoutProps {
   children: React.ReactNode;
 }
+
+enum Paths {
+  WHAT_IS_AR = "/what-is-ar",
+  CONTACT_US = "/contact-us",
+  CONSENT_FORM = "/consent-form",
+}
 export const FullLayout = (props: LayoutProps) => {
   const [isSidebarHidden, setIsSidebarHidden] = useState(true);
   const history = useHistory();
+  const dispatch = useDispatch();
 
   const handleMouseDown = (e: any) => {
-;
     setIsSidebarHidden(!isSidebarHidden);
 
     e.preventDefault();
   };
+
+  const handleLinkClick = (path: string): void => {
+    console.log(path, "inside here");
+    if (path === Paths.CONSENT_FORM) {
+      dispatch(actions.clickLink(Transitions.CLICK_CONSENT_FORM));
+    } else if (path === Paths.CONTACT_US) {
+      dispatch(actions.clickLink(Transitions.CLICK_CONTACT_US));
+    } else if (path === Paths.WHAT_IS_AR) {
+      dispatch(actions.clickLink(Transitions.CLICK_WHAT_IS_AR));
+    }
+    // history.push(path);
+  };
   return (
     <Container className="bg-peach">
       <SideMenu hide={isSidebarHidden} onClick={handleMouseDown}>
-        <Link className="link" to="/consent-form">
+        <button
+          className="link"
+          onClick={() => handleLinkClick(Paths.CONSENT_FORM)}
+        >
           <span>Consent Form</span>
-        </Link>
-        <Link className="link" to="/what-is-ar">
+        </button>
+        <button
+          className="link"
+          onClick={() => handleLinkClick(Paths.WHAT_IS_AR)}
+        >
           <span>What is AR?</span>
-        </Link>
-        <Link className="link" to="/contact-us">
+        </button>
+        <button
+          className="link"
+          onClick={() => {
+            handleLinkClick(Paths.CONTACT_US);
+          }}
+        >
           <span>Contact Us</span>
-        </Link>
+        </button>
       </SideMenu>
       <nav>
         <div className="w-full flex justify-between bg-white items-center">
@@ -127,23 +158,32 @@ export const FullLayout = (props: LayoutProps) => {
           <ul className="hidden md:block md:flex md:justify-between md:items-center">
             <li className="mx-2">
               <div>
-                <Link to="/what-is-ar" className="my-2">
+                <button
+                  onClick={() => handleLinkClick(Paths.WHAT_IS_AR)}
+                  className="my-2"
+                >
                   What Is AR?
-                </Link>
+                </button>
               </div>
             </li>
             <li className="mx-1">
               <div>
-                <Link to="/consent-form" className="my-2">
+                <button
+                  onClick={() => handleLinkClick(Paths.CONSENT_FORM)}
+                  className="my-2"
+                >
                   Consent Form
-                </Link>
+                </button>
               </div>
             </li>
             <li className="mx-2">
               <div>
-                <Link to="/contact-us" className="my-2">
+                <button
+                  onClick={() => handleLinkClick(Paths.CONTACT_US)}
+                  className="my-2"
+                >
                   Contact Us
-                </Link>
+                </button>
               </div>
             </li>
           </ul>
