@@ -1,10 +1,30 @@
-import { useState } from "react";
-import { useHistory } from "react-router-dom";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { useHistory, useLocation } from "react-router-dom";
 import { FullLayout } from "../layout/FullLayout";
+import { actions, PageNames } from "../store/modules/Events";
 
-export const Disclaimer = () => {
-  const [isSidebarHidden, setIsSidebarHidden] = useState(true);
+interface BaseProps {
+  history: any;
+  location: any;
+  match: any;
+}
+export const Disclaimer = (props: BaseProps) => {
   const history = useHistory();
+  const dispatch = useDispatch();
+
+  // Controls whether to monitor how time is spent viewing the consent form when there is a previous path
+  // on the location object
+  useEffect(() => {
+    if (props.location.state?.from) {
+      dispatch(actions.visitPage(new Date()));
+    }
+    return () => {
+      if (props.location.state?.from) {
+        dispatch(actions.leavePage(PageNames.CONSENT_FORM, new Date()));
+      }
+    };
+  });
 
   return (
     <FullLayout>

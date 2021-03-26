@@ -102,7 +102,7 @@ export const FullLayout = (props: LayoutProps) => {
     } else if (path === Paths.WHAT_IS_AR) {
       dispatch(actions.clickLink(Transitions.CLICK_WHAT_IS_AR));
     }
-    history.push(path);
+    history.push(path, { from: path });
   };
   return (
     <Container className="bg-peach">
@@ -130,11 +130,10 @@ export const FullLayout = (props: LayoutProps) => {
       </SideMenu>
       <nav>
         <div className="w-full flex justify-between bg-white items-center">
-          <header
-            className="text-xl bg-opacity-75 py-6 pl-4 flex-grow"
-            onClick={() => history.push("/")}
-          >
-            SUN-SPOT
+          <header className="text-xl bg-opacity-75 py-6 pl-4 flex-grow">
+            <span onClick={() => history.push("/")} className="cursor-pointer">
+              SUN-SPOT
+            </span>
           </header>
           <div
             className="pr-4 cursor-pointer md:hidden bg-opacity-75 py-6"

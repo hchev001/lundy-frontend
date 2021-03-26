@@ -6,17 +6,11 @@ export interface EventState {
   surveyId: string | undefined;
   eventName: string;
   eventDuration: number;
-  old1FilterViewed: boolean;
   old1Time: number;
-  old2FilterViewed: boolean;
   old2Time: number;
-  old3FilterViewed: boolean;
   old3Time: number;
-  mole1FilterViewed: boolean;
   mole1Time: number;
-  mole2FilterViewed: boolean;
   mole2Time: number;
-  mole3FilterViewed: boolean;
   mole3Time: number;
   messagePage1Timer: number;
   messagePage2Timer: number;
@@ -45,41 +39,35 @@ export interface EventState {
 const initialState: EventState = {
   eventName: "",
   eventDuration: -1,
-  old1FilterViewed: false,
-  old2FilterViewed: false,
-  old3FilterViewed: false,
-  mole1FilterViewed: false,
-  mole2FilterViewed: false,
-  mole3FilterViewed: false,
-  noOldTime: 0,
-  old1Time: 0,
-  old2Time: 0,
-  old3Time: 0,
-  noMoleTime: 0,
-  mole1Time: 0,
-  mole2Time: 0,
-  mole3Time: 0,
+  noOldTime: 0, //noneTimer
+  old1Time: 0, //filter1_Timer
+  old2Time: 0, //filter2_Timer
+  old3Time: 0, //filter3_Timer
+  noMoleTime: 0, //noneTimer or noneMoleTimer
+  mole1Time: 0, //filter1Mole_Timer
+  mole2Time: 0, //filter2Mole_Timer
+  mole3Time: 0, //filter3Mole_Timer
   startTime: 0,
-  messagePage1Timer: 0,
-  messagePage2Timer: 0,
-  messagePage3Timer: 0,
-  contactUsTimer: 0,
-  whatIsARTimer: 0,
-  consentFormTimer: 0,
+  messagePage1Timer: 0, //messagePage1_Timer
+  messagePage2Timer: 0, //messagePage2_Timer
+  messagePage3Timer: 0, //messagePage3_Timer
+  contactUsTimer: 0, //menu3_Timer
+  whatIsARTimer: 0, //menu1_Timer
+  consentFormTimer: 0, //menu2_Timer
   endTime: 0,
   surveyId: "",
-  touchCountMenu1: 0,
-  touchCountMenu2: 0,
-  touchCountMenu3: 0,
-  touchCount: 0,
-  touchCountFilter1: 0,
-  touchCountFilter2: 0,
-  touchCountFilter3: 0,
-  touchCountNoFilter: 0,
-  touchCountMole1: 0,
-  touchCountMole2: 0,
-  touchCountMole3: 0,
-  touchCountNoMole: 0,
+  touchCountMenu1: 0, //touchCountMenu1
+  touchCountMenu2: 0, //touchCountMenu2
+  touchCountMenu3: 0, //touchCountMenu3
+  touchCount: 0, //touchCount total?????
+  touchCountFilter1: 0, //touchCountFilter1
+  touchCountFilter2: 0, //touchCountFilter2
+  touchCountFilter3: 0, //touchCountFilter3
+  touchCountNoFilter: 0, //touchCountNoFilter
+  touchCountMole1: 0, //touchCountMole1
+  touchCountMole2: 0, //touchCountMole2
+  touchCountMole3: 0, //touchCountMole3
+  touchCountNoMole: 0, //touchCountMoleNoFilter
 };
 
 export enum Transitions {
@@ -137,7 +125,6 @@ const EventReducer: Reducer<EventState, Action> = produce(
         draft.surveyId = action.surveyId;
         break;
       case Transitions.VISIT_PAGE:
-        console.log(action);
         draft.startTime = action?.time?.getTime() || -1;
         break;
       case Transitions.LEAVE_PAGE:
@@ -149,24 +136,6 @@ const EventReducer: Reducer<EventState, Action> = produce(
       case Transitions.VIEW_MESSAGE_2_PAGE:
       case Transitions.VIEW_MESSAGE_3_PAGE:
         draft.startTime = action?.time?.getTime() || -1;
-        break;
-      case "VIEW_OLD_1_FILTER":
-        draft.old1FilterViewed = true;
-        break;
-      case "VIEW_OLD_2_FILTER":
-        draft.old2FilterViewed = true;
-        break;
-      case "VIEW_OLD_3_FILTER":
-        draft.old3FilterViewed = true;
-        break;
-      case "VIEW_MOLE_1_FILTER":
-        draft.mole1FilterViewed = true;
-        break;
-      case "VIEW_MOLE_2_FILTER":
-        draft.mole2FilterViewed = true;
-        break;
-      case "VIEW_MOLE_3_FILTER":
-        draft.mole3FilterViewed = true;
         break;
       case Transitions.CLICK_CONSENT_FORM:
         draft.touchCountMenu2 += 1;
