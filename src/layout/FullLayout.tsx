@@ -102,7 +102,7 @@ export const FullLayout = (props: LayoutProps) => {
     } else if (path === Paths.WHAT_IS_AR) {
       dispatch(actions.clickLink(Transitions.CLICK_WHAT_IS_AR));
     }
-    // history.push(path);
+    history.push(path);
   };
   return (
     <Container className="bg-peach">
