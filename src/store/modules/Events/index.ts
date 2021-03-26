@@ -31,6 +31,15 @@ export interface EventState {
   touchCountMenu1: number;
   touchCountMenu2: number;
   touchCountMenu3: number;
+  touchCount: number;
+  touchCountNoFilter: number;
+  touchCountFilter1: number;
+  touchCountFilter2: number;
+  touchCountFilter3: number;
+  touchCountMole1: number;
+  touchCountMole2: number;
+  touchCountMole3: number;
+  touchCountNoMole: number;
 }
 
 const initialState: EventState = {
@@ -62,6 +71,15 @@ const initialState: EventState = {
   touchCountMenu1: 0,
   touchCountMenu2: 0,
   touchCountMenu3: 0,
+  touchCount: 0,
+  touchCountFilter1: 0,
+  touchCountFilter2: 0,
+  touchCountFilter3: 0,
+  touchCountNoFilter: 0,
+  touchCountMole1: 0,
+  touchCountMole2: 0,
+  touchCountMole3: 0,
+  touchCountNoMole: 0,
 };
 
 export enum Transitions {
@@ -77,6 +95,15 @@ export enum Transitions {
   CLICK_CONSENT_FORM = "clickConsentForm",
   CLICK_WHAT_IS_AR = "clickWhatIsAR",
   CLICK_CONTACT_US = "clickContactUs",
+  CLICK_NO_MOLE_FILTER = "touchCountNoMole",
+  CLICK_MOLE_1 = "touchCountMole1",
+  CLICK_MOLE_2 = "touchCountMole2",
+  CLICK_MOLE_3 = "touchCountMole3",
+  CLICK_NO_OLD_FILTER = "touchCountNoFilter",
+  CLICK_FILTER_1 = "touchCountFilter1",
+  CLICK_FILTER_2 = "touchCountFilter2",
+  CLICK_FILTER_3 = "touchCountFilter3",
+  INCREMENT_TOUCH_COUNT = "touchCount",
 }
 
 export enum PageNames {
@@ -149,6 +176,33 @@ const EventReducer: Reducer<EventState, Action> = produce(
         break;
       case Transitions.CLICK_CONTACT_US:
         draft.touchCountMenu3 += 1;
+        break;
+      case Transitions.CLICK_NO_MOLE_FILTER:
+        draft.touchCountNoMole += 1;
+        break;
+      case Transitions.CLICK_MOLE_1:
+        draft.touchCountMole1 += 1;
+        break;
+      case Transitions.CLICK_MOLE_2:
+        draft.touchCountMole2 += 1;
+        break;
+      case Transitions.CLICK_MOLE_3:
+        draft.touchCountMole3 += 1;
+        break;
+      case Transitions.CLICK_NO_OLD_FILTER:
+        draft.touchCountNoFilter += 1;
+        break;
+      case Transitions.CLICK_FILTER_1:
+        draft.touchCountFilter1 += 1;
+        break;
+      case Transitions.CLICK_FILTER_2:
+        draft.touchCountFilter2 += 1;
+        break;
+      case Transitions.CLICK_FILTER_3:
+        draft.touchCountFilter3 += 1;
+        break;
+      case Transitions.INCREMENT_TOUCH_COUNT:
+        draft.touchCount += 1;
         break;
     }
   },

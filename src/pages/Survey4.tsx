@@ -12,7 +12,7 @@ export const Survey4: React.FC = () => {
    * Use [0, 1, 2] to denote when to render a gif and also
    * track the time it was seen
    */
-  const [gifState, setGifState] = useState(0);
+  const [gifState, setGifState] = useState(-1);
   useEffect(() => {
     dispatch(actions.visitPage(new Date()));
     return () => {
@@ -30,6 +30,70 @@ export const Survey4: React.FC = () => {
   return (
     <FullLayout>
       <div>Something about Hats and Moles</div>
+      <div className="mb-4">
+        {gifState === 1 && (
+          <div
+            style={{
+              width: "100%",
+              height: 0,
+              paddingBottom: "54%",
+              position: "relative",
+            }}
+          >
+            <iframe
+              src="https://giphy.com/embed/GrUhLU9q3nyRG"
+              width="100%"
+              height="100%"
+              style={{ position: "absolute" }}
+              frameBorder="0"
+              className="giphy-embed"
+              allowFullScreen
+            ></iframe>
+          </div>
+        )}
+
+        {gifState === 2 && (
+          <div
+            style={{
+              width: "100%",
+              height: 0,
+              paddingBottom: "50%",
+              position: "relative",
+            }}
+          >
+            <iframe
+              src="https://giphy.com/embed/Nt8Q1I8rlfzZS"
+              width="100%"
+              height="100%"
+              style={{ position: "absolute" }}
+              frameBorder="0"
+              className="giphy-embed"
+              allowFullScreen
+            ></iframe>
+          </div>
+        )}
+
+        {gifState === 3 && (
+          <div
+            style={{
+              width: "100%",
+              height: 0,
+              paddingBottom: "100%",
+              position: "relative",
+            }}
+          >
+            <iframe
+              src="https://giphy.com/embed/lo9wzT7ENLVX04TIGZ"
+              width="100%"
+              height="100%"
+              style={{ position: "absolute" }}
+              frameBorder="0"
+              className="giphy-embed"
+              allowFullScreen
+            ></iframe>
+          </div>
+        )}
+      </div>
       <div>
         <button
           type="button"

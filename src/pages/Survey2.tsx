@@ -12,7 +12,7 @@ export const Survey2: React.FC = () => {
    * Use [0, 1, 2] to denote when to render a gif and also
    * track the time it was seen
    */
-  const [gifState, setGifState] = useState(0);
+  const [gifState, setGifState] = useState(-1);
   useEffect(() => {
     dispatch(actions.visitPage(new Date()));
     return () => {
@@ -30,7 +30,72 @@ export const Survey2: React.FC = () => {
 
   return (
     <FullLayout>
-      <div>Hello2</div>
+      <div>Age Filters</div>
+      <div className="mb-4">
+        {gifState === 1 && (
+          <div
+            style={{
+              width: "100%",
+              height: 0,
+              paddingBottom: "54%",
+              position: "relative",
+            }}
+          >
+            <iframe
+              src="https://giphy.com/embed/GrUhLU9q3nyRG"
+              width="100%"
+              height="100%"
+              style={{ position: "absolute" }}
+              frameBorder="0"
+              className="giphy-embed"
+              allowFullScreen
+            ></iframe>
+          </div>
+        )}
+
+        {gifState === 2 && (
+          <div
+            style={{
+              width: "100%",
+              height: 0,
+              paddingBottom: "50%",
+              position: "relative",
+            }}
+          >
+            <iframe
+              src="https://giphy.com/embed/Nt8Q1I8rlfzZS"
+              width="100%"
+              height="100%"
+              style={{ position: "absolute" }}
+              frameBorder="0"
+              className="giphy-embed"
+              allowFullScreen
+            ></iframe>
+          </div>
+        )}
+
+        {gifState === 3 && (
+          <div
+            style={{
+              width: "100%",
+              height: 0,
+              paddingBottom: "100%",
+              position: "relative",
+            }}
+          >
+            <iframe
+              src="https://giphy.com/embed/lo9wzT7ENLVX04TIGZ"
+              width="100%"
+              height="100%"
+              style={{ position: "absolute" }}
+              frameBorder="0"
+              className="giphy-embed"
+              allowFullScreen
+            ></iframe>
+          </div>
+        )}
+      </div>
+
       <div>
         <button
           type="button"
@@ -46,7 +111,7 @@ export const Survey2: React.FC = () => {
           className="mt-4 inline-flex justify-center w-full rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2"
           onClick={() => setGifState(1)}
         >
-          Mole 1
+          Age 1
         </button>
       </div>
       <div>
@@ -57,7 +122,7 @@ export const Survey2: React.FC = () => {
             setGifState(2);
           }}
         >
-          Mole 2
+          Age 2
         </button>
       </div>
       <div>
@@ -68,7 +133,7 @@ export const Survey2: React.FC = () => {
             setGifState(3);
           }}
         >
-          Mole 3
+          Age 3
         </button>
       </div>
       <div>
