@@ -66,7 +66,7 @@ const SideMenu = styled.div<SideMenuProps>`
 
   .link {
       color: white;
-      max-width: 145px;
+      max-width: 150px;
       font-size: 1.5rem;
       text-decoration: none;
       padding-bottom: 2rem;
