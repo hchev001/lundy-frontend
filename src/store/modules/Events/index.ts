@@ -1,6 +1,7 @@
 import { Draft } from "@reduxjs/toolkit";
 import produce from "immer";
 import { Reducer } from "redux";
+import axios from "axios";
 
 export interface EventState {
   surveyId: string | undefined;
@@ -129,7 +130,9 @@ const EventReducer: Reducer<EventState, Action> = produce(
         break;
       case Transitions.LEAVE_PAGE:
         //@ts-ignore
-        draft[action.pageTimerIndex] += action.time.getTime() - draft.startTime;
+        draft[action.pageTimerIndex] +=
+          //@ts-ignore
+          (action.time.getTime() - draft.startTime) / 1000;
         draft.startTime = 0;
         break;
       case Transitions.VIEW_MESSAGE_1_PAGE:
@@ -199,16 +202,66 @@ export const actions = {
 
 export const selectors = {
   survey: (state: EventState) => ({
-    old1Time: state.old1Time,
-    old2Time: state.old2Time,
-    old3Time: state.old3Time,
-    mole1Time: state.mole1Time,
-    mole2Time: state.mole2Time,
-    mole3Time: state.mole3Time,
+    noneTimer: state.noOldTime,
+    filter1_Timer: state.old1Time,
+    filter2_Timer: state.old2Time,
+    filter3_Timer: state.old3Time,
+    filter1Hat_Timer: state.mole1Time,
+    filter2Hat_Timer: state.mole2Time,
+    filter3Mole_Timer: state.mole3Time,
     messagePage1Timer: state.messagePage1Timer,
     messagePage2Timer: state.messagePage2Timer,
     messagePage3Timer: state.messagePage3Timer,
+    menu1_Timer: state.whatIsARTimer,
+    menu2_Timer: state.consentFormTimer,
+    menu3_Timer: state.contactUsTimer,
+    touchCountMenu1: state.touchCountMenu1,
+    touchCountMenu2: state.touchCountMenu2,
+    touchCountMenu3: state.touchCountMenu3,
+    touchCount: state.touchCount,
+    touchCountFilter1: state.touchCountFilter1,
+    touchCountFilter2: state.touchCountFilter2,
+    touchCountFilter3: state.touchCountFilter3,
+    touchCountNoFilter: state.touchCountNoFilter,
+    touchCountMole1: state.touchCountMole1,
+    touchCountMole2: state.touchCountMole2,
+    touchCountMole3: state.touchCountMole3,
+    touchCountNoMole: state.touchCountNoMole,
   }),
+};
+
+interface SurveySubmission {
+  noneTimer: number;
+  filter3_Timer: number;
+  filter1Hat_Timer: number;
+  filter2Hat_Timer: number;
+  filter3Mole_Timer: number;
+  messagePage1Timer: number;
+  messagePage2Timer: number;
+  messagePage3Timer: number;
+  menu1_Timer: number;
+  menu2_Timer: number;
+  menu3_Timer: number;
+  touchCountMenu1: number;
+  touchCountMenu2: number;
+  touchCountMenu3: number;
+  touchCount: number;
+  touchCountFilter1: number;
+  touchCountFilter2: number;
+  touchCountFilter3: number;
+  touchCountNoFilter: number;
+  touchCountMole1: number;
+  touchCountMole2: number;
+  touchCountMole3: number;
+  touchCountNoMole: number;
+}
+
+export const SubmitSurvey = (survey: SurveySubmission): Promise<any> => {
+  return axios({
+    method: "post",
+    url: "http:167.71.95.235/experiments",
+    data: survey,
+  });
 };
 
 export default EventReducer;

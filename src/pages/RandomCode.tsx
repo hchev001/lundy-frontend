@@ -1,6 +1,19 @@
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { FullLayout } from "../layout/FullLayout";
+import { selectors, SubmitSurvey } from "../store/modules/Events";
 
 export const RandomCode: React.FC = () => {
+  const dispatch = useDispatch();
+  const survey = useSelector(selectors.survey);
+  const [surveyId, setSurveyId] = useState("");
+  useEffect(() => {
+    SubmitSurvey(survey)
+      .then((r) => {
+        console.log(r);
+      })
+      .catch((e) => console.log(e));
+  }, []);
   return (
     <FullLayout>
       <div>Random Code</div>

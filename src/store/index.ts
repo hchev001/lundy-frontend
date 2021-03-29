@@ -1,10 +1,4 @@
-import {
-  createStore,
-  compose,
-  applyMiddleware,
-  combineReducers,
-  Store,
-} from "redux";
+import { createStore, applyMiddleware, combineReducers, Store } from "redux";
 import logger from "redux-logger";
 import thunk from "redux-thunk";
 import EventReducer, { EventState } from "./modules/Events";
