@@ -10,7 +10,6 @@ export const RandomCode: React.FC = () => {
   useEffect(() => {
     SubmitSurvey(survey)
       .then((r) => {
-        console.log(r.data);
         setSurveyId(r.data.data.surveyId);
       })
       .catch((e) => console.log(e));

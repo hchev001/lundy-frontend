@@ -263,7 +263,7 @@ interface SurveySubmission {
 }
 
 export const SubmitSurvey = (survey: SurveySubmission): Promise<any> => {
-  if (survey.filter1Hat_Timer < 1 || survey.filter1_Timer < 1) {
+  if (survey.filter1Hat_Timer <= 0 || survey.filter1_Timer <= 0) {
     return Promise.reject({
       code: 400,
       message: "No survey analytics detected.",
