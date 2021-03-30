@@ -2,6 +2,7 @@ import { Draft } from "@reduxjs/toolkit";
 import produce from "immer";
 import { Reducer } from "redux";
 import axios from "axios";
+import { ApplicationState } from "../..";
 
 export interface EventState {
   surveyId: string | undefined;
@@ -201,37 +202,42 @@ export const actions = {
 };
 
 export const selectors = {
-  survey: (state: EventState) => ({
-    noneTimer: state.noOldTime,
-    filter1_Timer: state.old1Time,
-    filter2_Timer: state.old2Time,
-    filter3_Timer: state.old3Time,
-    filter1Hat_Timer: state.mole1Time,
-    filter2Hat_Timer: state.mole2Time,
-    filter3Mole_Timer: state.mole3Time,
-    messagePage1Timer: state.messagePage1Timer,
-    messagePage2Timer: state.messagePage2Timer,
-    messagePage3Timer: state.messagePage3Timer,
-    menu1_Timer: state.whatIsARTimer,
-    menu2_Timer: state.consentFormTimer,
-    menu3_Timer: state.contactUsTimer,
-    touchCountMenu1: state.touchCountMenu1,
-    touchCountMenu2: state.touchCountMenu2,
-    touchCountMenu3: state.touchCountMenu3,
-    touchCount: state.touchCount,
-    touchCountFilter1: state.touchCountFilter1,
-    touchCountFilter2: state.touchCountFilter2,
-    touchCountFilter3: state.touchCountFilter3,
-    touchCountNoFilter: state.touchCountNoFilter,
-    touchCountMole1: state.touchCountMole1,
-    touchCountMole2: state.touchCountMole2,
-    touchCountMole3: state.touchCountMole3,
-    touchCountNoMole: state.touchCountNoMole,
-  }),
+  survey: (state: ApplicationState) => {
+    const { events } = state;
+    return {
+      noneTimer: events.noOldTime,
+      filter1_Timer: events.old1Time,
+      filter2_Timer: events.old2Time,
+      filter3_Timer: events.old3Time,
+      filter1Hat_Timer: events.mole1Time,
+      filter2Hat_Timer: events.mole2Time,
+      filter3Mole_Timer: events.mole3Time,
+      messagePage1Timer: events.messagePage1Timer,
+      messagePage2Timer: events.messagePage2Timer,
+      messagePage3Timer: events.messagePage3Timer,
+      menu1_Timer: events.whatIsARTimer,
+      menu2_Timer: events.consentFormTimer,
+      menu3_Timer: events.contactUsTimer,
+      touchCountMenu1: events.touchCountMenu1,
+      touchCountMenu2: events.touchCountMenu2,
+      touchCountMenu3: events.touchCountMenu3,
+      touchCount: events.touchCount,
+      touchCountFilter1: events.touchCountFilter1,
+      touchCountFilter2: events.touchCountFilter2,
+      touchCountFilter3: events.touchCountFilter3,
+      touchCountNoFilter: events.touchCountNoFilter,
+      touchCountMole1: events.touchCountMole1,
+      touchCountMole2: events.touchCountMole2,
+      touchCountMole3: events.touchCountMole3,
+      touchCountNoMole: events.touchCountNoMole,
+    };
+  },
 };
 
 interface SurveySubmission {
   noneTimer: number;
+  filter1_Timer: number;
+  filter2_Timer: number;
   filter3_Timer: number;
   filter1Hat_Timer: number;
   filter2Hat_Timer: number;
@@ -257,10 +263,16 @@ interface SurveySubmission {
 }
 
 export const SubmitSurvey = (survey: SurveySubmission): Promise<any> => {
+  if (survey.filter1Hat_Timer < 1 || survey.filter1_Timer < 1) {
+    return Promise.reject({
+      code: 400,
+      message: "No survey analytics detected.",
+    });
+  }
   return axios({
     method: "post",
-    url: "http:167.71.95.235/experiments",
-    data: survey,
+    url: "http://167.71.95.235/experiments",
+    data: { ...survey },
   });
 };
 

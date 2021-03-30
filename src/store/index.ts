@@ -4,7 +4,7 @@ import thunk from "redux-thunk";
 import EventReducer, { EventState } from "./modules/Events";
 import { composeWithDevTools } from "redux-devtools-extension";
 
-interface ApplicationState {
+export interface ApplicationState {
   events: EventState;
 }
 const CombinedReducer = () => combineReducers({ events: EventReducer });
