@@ -55,7 +55,7 @@ const SideMenu = styled.div<SideMenuProps>`
   overflow: ${(props) => (props.hide ? "scroll" : "hidden")}
   z-index: 1599;
   height: 100vh;
-  width: 100vw;
+  width: 80vw;
   transform: ${(props) =>
     props.hide ? "translate3d(-100vw, 0, 0)" : "translate3d(0vw, 0, 0)"}
   }
@@ -108,19 +108,19 @@ export const FullLayout = (props: LayoutProps) => {
     <Container className="bg-peach">
       <SideMenu hide={isSidebarHidden} onClick={handleMouseDown}>
         <button
-          className="link"
+          className="w-full text-white text-2xl inline-flex justify-start my-4 hover:text-red-100 focus:outline-none"
           onClick={() => handleLinkClick(Paths.CONSENT_FORM)}
         >
           <span>Consent Form</span>
         </button>
         <button
-          className="link"
+          className="w-full text-white text-2xl inline-flex justify-start my-4 hover:text-red-100 focus:outline-none"
           onClick={() => handleLinkClick(Paths.WHAT_IS_AR)}
         >
           <span>What is AR?</span>
         </button>
         <button
-          className="link"
+          className="w-full text-white text-2xl inline-flex justify-start my-4 hover:text-red-100 focus:outline-none"
           onClick={() => {
             handleLinkClick(Paths.CONTACT_US);
           }}

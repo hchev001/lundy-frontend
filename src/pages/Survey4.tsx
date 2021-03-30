@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router";
+import { Button } from "../components/Button";
 import { FullLayout } from "../layout/FullLayout";
 import { actions, PageNames, Transitions } from "../store/modules/Events";
 
@@ -121,18 +122,10 @@ export const Survey4: React.FC = () => {
         )}
       </div>
       <div>
-        <button
-          type="button"
-          className="mt-4 inline-flex justify-center w-full rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2"
-          onClick={() => handleFilterClick(0)}
-        >
-          No Filter
-        </button>
+        <Button onClick={() => handleFilterClick(0)}>No Filter</Button>
       </div>
       <div>
-        <button
-          type="button"
-          className="mt-4 inline-flex justify-center w-full rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2"
+        <Button
           onClick={() => {
             if (!gifStates.includes(1)) {
               setGiftStates([...gifStates, 1]);
@@ -141,12 +134,10 @@ export const Survey4: React.FC = () => {
           }}
         >
           Hat 1
-        </button>
+        </Button>
       </div>
       <div>
-        <button
-          type="button"
-          className="mt-4 inline-flex justify-center w-full rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2"
+        <Button
           onClick={() => {
             if (!gifStates.includes(2)) {
               setGiftStates([...gifStates, 2]);
@@ -155,12 +146,10 @@ export const Survey4: React.FC = () => {
           }}
         >
           Hat 2
-        </button>
+        </Button>
       </div>
       <div>
-        <button
-          type="button"
-          className="mt-4 inline-flex justify-center w-full rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2"
+        <Button
           onClick={() => {
             if (!gifStates.includes(3)) {
               setGiftStates([...gifStates, 3]);
@@ -169,17 +158,15 @@ export const Survey4: React.FC = () => {
           }}
         >
           Mole 3
-        </button>
+        </Button>
       </div>
       <div>
-        <button
-          type="button"
+        <Button
           disabled={gifStates.length > 1 ? false : true}
-          className="mt-4 inline-flex justify-center w-full rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2"
           onClick={() => handleNext()}
         >
           Next
-        </button>
+        </Button>
       </div>
     </FullLayout>
   );
