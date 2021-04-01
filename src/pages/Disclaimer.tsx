@@ -1,6 +1,7 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useHistory, useLocation } from "react-router-dom";
+import { Button } from "../components/Button";
 import { FullLayout } from "../layout/FullLayout";
 import { actions, PageNames } from "../store/modules/Events";
 
@@ -12,6 +13,7 @@ interface BaseProps {
 export const Disclaimer = (props: BaseProps) => {
   const history = useHistory();
   const dispatch = useDispatch();
+  const [isValid, setIsValid] = useState(true);
 
   // Controls whether to monitor how time is spent viewing the consent form when there is a previous path
   // on the location object
@@ -88,13 +90,13 @@ export const Disclaimer = (props: BaseProps) => {
         </span>
       </div>
       <div>
-        <button
-          type="button"
-          className="mt-4 inline-flex justify-center w-full rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2"
+        <Button
           onClick={() => history.push("/survey/1")}
+          validationMessage="CLick to continue"
+          hidden={isValid}
         >
           Next
-        </button>
+        </Button>
       </div>
     </FullLayout>
   );

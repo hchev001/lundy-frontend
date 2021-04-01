@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import classNames from "classnames";
 const SButton = styled.button`
   padding: 0;
   border: none;
@@ -44,17 +45,60 @@ interface Props {
   children: React.ReactNode;
   onClick: any;
   disabled?: boolean;
+  validationMessage?: string;
+  hidden?: boolean;
 }
-export function Button(props: Props) {
+export function Button({
+  hidden = true,
+  disabled,
+  validationMessage,
+  onClick,
+  children,
+}: Props) {
   //   return <SButton>{props.children}</SButton>;
+
+  const btnClasses = classNames(
+    "mt-4",
+    "inline-flex",
+    "justify-center",
+    "w-full",
+    "rounded-md",
+    "border-gray-300",
+    "shadow-sm",
+    "px-4",
+    "py-2",
+    "bg-white",
+    "text-sm",
+    "font-medium",
+    "text-gray-700",
+    "border-2",
+    "hover:border-red-200",
+    "focus:outline-none",
+    "focus:ring",
+    "focus:ring-red-200"
+  );
+  const validationClasses = classNames(
+    "px-3",
+    "py-1",
+    "text-sm",
+    "text-red-500",
+    "transition-opacity",
+    "ease-out",
+    "duration-300",
+    { "opacity-0": hidden },
+    { "opacity-100": !hidden }
+  );
   return (
-    <button
-      disabled={props.disabled}
-      onClick={props.onClick}
-      type="button"
-      className="mt-4 inline-flex justify-center w-full rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none hover:border-red-200"
-    >
-      {props.children}
-    </button>
+    <>
+      <button
+        disabled={disabled}
+        onClick={onClick}
+        type="button"
+        className={btnClasses}
+      >
+        {children}
+      </button>
+      <div className={validationClasses}>{validationMessage}</div>
+    </>
   );
 }
