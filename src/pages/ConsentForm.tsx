@@ -10,7 +10,7 @@ interface BaseProps {
   location: any;
   match: any;
 }
-export const Disclaimer = (props: BaseProps) => {
+export const ConsentForm = (props: BaseProps) => {
   const history = useHistory();
   const dispatch = useDispatch();
   const [isValid, setIsValid] = useState(true);
@@ -27,6 +27,10 @@ export const Disclaimer = (props: BaseProps) => {
       }
     };
   });
+
+  const handleGoBack = () => {
+    history.goBack();
+  };
 
   return (
     <FullLayout>
@@ -95,11 +99,11 @@ export const Disclaimer = (props: BaseProps) => {
       </div>
       <div>
         <Button
-          onClick={() => history.push("/survey/1")}
+          onClick={() => handleGoBack()}
           validationMessage="Click to continue"
           hidden={isValid}
         >
-          Next
+          Go Back
         </Button>
       </div>
     </FullLayout>

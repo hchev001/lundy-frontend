@@ -7,9 +7,10 @@ import { Survey4 } from "../pages/Survey4";
 import { Survey5 } from "../pages/Survey5";
 import { RandomCode } from "../pages/RandomCode";
 import { WhatIsAR } from "../pages/WhatIsAr";
+import { ConsentForm } from "../pages/ConsentForm";
 
 export const IndexRoutes = [
-  { path: "/consent-form", name: "Consent Form", component: Disclaimer },
+  { path: "/consent-form", name: "Consent Form", component: ConsentForm },
   { path: "/what-is-ar", name: "What is AR?", component: WhatIsAR },
   { path: "/contact-us", name: "Contact Us", component: ContactUs },
   { path: "/survey/1", component: Survey1 },

@@ -37,6 +37,7 @@ export interface EventState {
   touchCountMole3: number;
   touchCountNoMole: number;
   menuOpen: boolean;
+  surveyStarted: boolean;
 }
 
 const initialState: EventState = {
@@ -72,6 +73,7 @@ const initialState: EventState = {
   touchCountMole3: 0, //touchCountMole3
   touchCountNoMole: 0, //touchCountMoleNoFilter,
   menuOpen: false,
+  surveyStarted: false,
 };
 
 export enum Transitions {
@@ -143,6 +145,7 @@ const EventReducer: Reducer<EventState, Action> = produce(
         break;
       case Transitions.VISIT_PAGE:
         draft.startTime = action?.time?.getTime() || -1;
+
         break;
       case Transitions.LEAVE_PAGE:
         //@ts-ignore
@@ -150,6 +153,9 @@ const EventReducer: Reducer<EventState, Action> = produce(
           //@ts-ignore
           (action.time.getTime() - draft.startTime) / 1000;
         draft.startTime = 0;
+        if (action.pageTimerIndex === PageNames.CONSENT_FORM) {
+          draft.surveyStarted = true;
+        }
         break;
       case Transitions.VIEW_MESSAGE_1_PAGE:
       case Transitions.VIEW_MESSAGE_2_PAGE:
@@ -256,6 +262,9 @@ export const selectors = {
   isMenuOpen: (state: ApplicationState) => {
     const { events } = state;
     return events.menuOpen;
+  },
+  surveyStarted: (state: ApplicationState) => {
+    return state.events.surveyStarted;
   },
 };
 
