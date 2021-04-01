@@ -30,37 +30,40 @@ export const Disclaimer = (props: BaseProps) => {
 
   return (
     <FullLayout>
-      <div className="w-full flex justify-center">
+      <div className="w-full flex justify-center mb-4">
         <h1 className="text-2xl">Consent Form</h1>
       </div>
       <div className="text-base">
-        <p>
-          Purpose & Procedures: You are invited to take part in a research
-          study. Doing so is voluntary. The purpose of this research is to test
-          and to evaluate the effectiveness of a website which is designed to
-          provide an interactive experience for the users. The study will take
-          about 20 to 25 minutes to finish. You will be asked to thoroughly
-          interact with the website and its features. Then, you will be asked to
-          complete a brief survey on your perceptions regarding your experience.
+        <p className="mb-3">
+          <span className="font-medium">Purpose & Procedures:</span> You are
+          invited to take part in a research study. Doing so is voluntary. The
+          purpose of this research is to test and to evaluate the effectiveness
+          of a website which is designed to provide an interactive experience
+          for the users. The study will take about 20 to 25 minutes to finish.
+          You will be asked to thoroughly interact with the website and its
+          features. Then, you will be asked to complete a brief survey on your
+          perceptions regarding your experience.
         </p>
-        <p>
-          Requirements: You must be at least 18 years old to participate in the
-          study. Risks: Taking part in the study involves no risks and
-          discomfort that are no greater than those ordinarily encountered in
-          daily life or during other online activities.
+        <p className="mb-3">
+          <span className="font-medium">Requirements:</span> You must be at
+          least 18 years old to participate in the study. Risks: Taking part in
+          the study involves no risks and discomfort that are no greater than
+          those ordinarily encountered in daily life or during other online
+          activities.
         </p>
-        <p>
-          Benefits: No direct benefit can be promised to you for being in this
-          study.
+        <p className="mb-3">
+          <span className="font-medium">Benefits:</span> No direct benefit can
+          be promised to you for being in this study.
         </p>
-        <p>
-          Compensation: You will receive extra credits for your participation.
+        <p className="mb-3">
+          <span className="font-medium">Compensation:</span> You will receive
+          extra credits for your participation.
         </p>
-        <p>
-          Voluntary Participation: Your participation in this study is
-          voluntary.
+        <p className="mb-3">
+          <span className="font-medium">Voluntary Participation:</span> Your
+          participation in this study is voluntary.
         </p>
-        <p>
+        <p className="mb-3">
           You do not have to be in this study if you do not want to, and you can
           leave the study at any time. You will not lose any services, benefits,
           or rights you would normally have if you chose not to be in the study
@@ -74,12 +77,13 @@ export const Disclaimer = (props: BaseProps) => {
           format and you will not be identified in any publications or
           presentations.
         </p>
-        <p>
-          Contact: If you have any questions or concerns about the research,
-          please contact Ms. Di Lun at (305) 284-8605 or dxl744@miami.edu. If
-          you have questions regarding your rights as a research participant,
-          contact the University of Miami, Human Subject Research Office at
-          hsro@med.miami.edu or 305-243-3195.
+        <p className="mb-3">
+          <span className="font-medium">Contact:</span> If you have any
+          questions or concerns about the research, please contact Ms. Di Lun at
+          (305) 284-8605 or dxl744@miami.edu. If you have questions regarding
+          your rights as a research participant, contact the University of
+          Miami, Human Subject Research Office at hsro@med.miami.edu or
+          305-243-3195.
         </p>
       </div>
       <div>

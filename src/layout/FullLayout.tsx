@@ -1,8 +1,8 @@
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
 import styled from "styled-components";
-import { actions, Transitions } from "../store/modules/Events";
+import { actions, selectors, Transitions } from "../store/modules/Events";
 import { bp } from "../utils/breakpoints";
 
 const Container = styled.div`
@@ -55,10 +55,11 @@ const SideMenu = styled.div<SideMenuProps>`
   overflow: ${(props) => (props.hide ? "scroll" : "hidden")}
   z-index: 1599;
   height: 100vh;
-  width: 80vw;
+  width: 100vw;
   transform: ${(props) =>
     props.hide ? "translate3d(-100vw, 0, 0)" : "translate3d(0vw, 0, 0)"}
   }
+  transition: transform 500ms ease-out;
   display: flex;
   flex-direction: column;
   padding-top: 25px;
@@ -83,18 +84,17 @@ enum Paths {
   CONSENT_FORM = "/consent-form",
 }
 export const FullLayout = (props: LayoutProps) => {
-  const [isSidebarHidden, setIsSidebarHidden] = useState(true);
   const history = useHistory();
   const dispatch = useDispatch();
+  const isMenuOpen = useSelector(selectors.isMenuOpen);
 
   const handleMouseDown = (e: any) => {
-    setIsSidebarHidden(!isSidebarHidden);
+    dispatch(actions.hideMenu());
 
     e.preventDefault();
   };
 
   const handleLinkClick = (path: string): void => {
-    console.log(path, "inside here");
     if (path === Paths.CONSENT_FORM) {
       dispatch(actions.clickLink(Transitions.CLICK_CONSENT_FORM));
     } else if (path === Paths.CONTACT_US) {
@@ -102,11 +102,13 @@ export const FullLayout = (props: LayoutProps) => {
     } else if (path === Paths.WHAT_IS_AR) {
       dispatch(actions.clickLink(Transitions.CLICK_WHAT_IS_AR));
     }
+
     history.push(path, { from: path });
+    dispatch(actions.hideMenu());
   };
   return (
     <Container className="bg-peach">
-      <SideMenu hide={isSidebarHidden} onClick={handleMouseDown}>
+      <SideMenu hide={!isMenuOpen} onClick={handleMouseDown}>
         <button
           className="w-full text-white text-2xl inline-flex justify-start my-4 hover:text-red-100 focus:outline-none"
           onClick={() => handleLinkClick(Paths.CONSENT_FORM)}
@@ -137,7 +139,7 @@ export const FullLayout = (props: LayoutProps) => {
           </header>
           <div
             className="pr-4 cursor-pointer md:hidden bg-opacity-75 py-6"
-            onClick={() => setIsSidebarHidden(!isSidebarHidden)}
+            onClick={() => dispatch(actions.toggleMenu())}
           >
             <svg
               className="w-6 h-6 stroke-current text-mustard"
@@ -154,7 +156,7 @@ export const FullLayout = (props: LayoutProps) => {
               />
             </svg>
           </div>
-          <ul className="hidden md:block md:flex md:justify-between md:items-center">
+          <ul className="hidden md:flex md:justify-between md:items-center">
             <li className="mx-2">
               <div>
                 <button

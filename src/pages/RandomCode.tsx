@@ -19,9 +19,19 @@ export const RandomCode: React.FC = () => {
       <div>
         <span className="text-2xl">Survey Code</span>
       </div>
-      <div>
-        <span className="text-lg">{surveyId}</span>
+
+      <div className="w-full flex justify-center">
+        <span className="text-lg my-4">{surveyId}</span>
       </div>
+      <div>
+        <span>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer
+          aliquam ultrices ante. Nulla vel est malesuada, luctus dui ut, dapibus
+          felis. Vestibulum accumsan, nisi eu tempus vestibulum, sapien nulla
+          consequat massa, auctor egestas ligula ipsum at justo. Nulla accumsan
+        </span>
+      </div>
+
       <div>
         <Button onClick={() => window.close()}>Close</Button>
       </div>

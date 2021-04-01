@@ -75,7 +75,9 @@ export function Button({
     "hover:border-red-200",
     "focus:outline-none",
     "focus:ring",
-    "focus:ring-red-200"
+    "focus:ring-red-200",
+    "block",
+    { "disabled:opacity-50": false }
   );
   const validationClasses = classNames(
     "px-3",

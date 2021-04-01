@@ -36,6 +36,7 @@ export interface EventState {
   touchCountMole2: number;
   touchCountMole3: number;
   touchCountNoMole: number;
+  menuOpen: boolean;
 }
 
 const initialState: EventState = {
@@ -69,7 +70,8 @@ const initialState: EventState = {
   touchCountMole1: 0, //touchCountMole1
   touchCountMole2: 0, //touchCountMole2
   touchCountMole3: 0, //touchCountMole3
-  touchCountNoMole: 0, //touchCountMoleNoFilter
+  touchCountNoMole: 0, //touchCountMoleNoFilter,
+  menuOpen: false,
 };
 
 export enum Transitions {
@@ -94,6 +96,10 @@ export enum Transitions {
   CLICK_FILTER_2 = "touchCountFilter2",
   CLICK_FILTER_3 = "touchCountFilter3",
   INCREMENT_TOUCH_COUNT = "touchCount",
+
+  OPEN_MENU = "openMenu",
+  CLOSE_MENU = "closeMenu",
+  TOGGLE_MENU = "toggleMenu",
 }
 
 export enum PageNames {
@@ -123,6 +129,15 @@ type Action = {
 const EventReducer: Reducer<EventState, Action> = produce(
   (draft: Draft<EventState>, action: Action) => {
     switch (action.type) {
+      case Transitions.TOGGLE_MENU:
+        draft.menuOpen = !draft.menuOpen;
+        break;
+      case Transitions.OPEN_MENU:
+        draft.menuOpen = true;
+        break;
+      case Transitions.CLOSE_MENU:
+        draft.menuOpen = false;
+        break;
       case Transitions.START_SURVEY:
         draft.surveyId = action.surveyId;
         break;
@@ -199,6 +214,12 @@ export const actions = {
   clickLink: (linkName: Transitions): Action => ({
     type: linkName,
   }),
+  toggleMenu: (): Action => ({
+    type: Transitions.TOGGLE_MENU,
+  }),
+  hideMenu: (): Action => ({
+    type: Transitions.CLOSE_MENU,
+  }),
 };
 
 export const selectors = {
@@ -231,6 +252,10 @@ export const selectors = {
       touchCountMole3: events.touchCountMole3,
       touchCountNoMole: events.touchCountNoMole,
     };
+  },
+  isMenuOpen: (state: ApplicationState) => {
+    const { events } = state;
+    return events.menuOpen;
   },
 };
 
