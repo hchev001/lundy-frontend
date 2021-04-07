@@ -296,8 +296,11 @@ interface SurveySubmission {
   touchCountNoMole: number;
 }
 
-export const SubmitSurvey = (survey: SurveySubmission): Promise<any> => {
-  if (survey.filter1Hat_Timer <= 0 || survey.filter1_Timer <= 0) {
+export const SubmitSurvey = (
+  survey: SurveySubmission,
+  surveyStarted: boolean
+): Promise<any> => {
+  if (!surveyStarted) {
     return Promise.reject({
       code: 400,
       message: "No survey analytics detected.",

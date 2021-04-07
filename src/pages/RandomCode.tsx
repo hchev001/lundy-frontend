@@ -7,8 +7,10 @@ import { selectors, SubmitSurvey } from "../store/modules/Events";
 export const RandomCode: React.FC = () => {
   const survey = useSelector(selectors.survey);
   const [surveyId, setSurveyId] = useState("");
+  const surveyStarted = useSelector(selectors.surveyStarted);
+
   useEffect(() => {
-    SubmitSurvey(survey)
+    SubmitSurvey(survey, surveyStarted)
       .then((r) => {
         setSurveyId(r.data.data.surveyId);
       })
