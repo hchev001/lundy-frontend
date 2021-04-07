@@ -305,7 +305,7 @@ export const SubmitSurvey = (survey: SurveySubmission): Promise<any> => {
   }
   return axios({
     method: "post",
-    url: "http://167.71.95.235/experiments",
+    url: "https://sun-spot.org/experiments",
     data: { ...survey },
   });
 };
