@@ -21,12 +21,15 @@ export const ConsentForm = (props: BaseProps) => {
     if (props.location.state?.from) {
       dispatch(actions.visitPage(new Date()));
     }
+
+    // when page mounts we indicate that the survey gets started, if they visit the conset form from menu, the same applies
+    dispatch(actions.startSurvey());
     return () => {
       if (props.location.state?.from) {
         dispatch(actions.leavePage(PageNames.CONSENT_FORM, new Date()));
       }
     };
-  });
+  }, []);
 
   const handleGoBack = () => {
     history.goBack();

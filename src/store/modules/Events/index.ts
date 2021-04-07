@@ -141,7 +141,7 @@ const EventReducer: Reducer<EventState, Action> = produce(
         draft.menuOpen = false;
         break;
       case Transitions.START_SURVEY:
-        draft.surveyId = action.surveyId;
+        draft.surveyStarted = true;
         break;
       case Transitions.VISIT_PAGE:
         draft.startTime = action?.time?.getTime() || -1;
@@ -225,6 +225,9 @@ export const actions = {
   }),
   hideMenu: (): Action => ({
     type: Transitions.CLOSE_MENU,
+  }),
+  startSurvey: (): Action => ({
+    type: Transitions.START_SURVEY,
   }),
 };
 
