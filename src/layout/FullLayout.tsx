@@ -4,13 +4,19 @@ import { Link, useHistory } from "react-router-dom";
 import styled from "styled-components";
 import { actions, selectors, Transitions } from "../store/modules/Events";
 import { bp } from "../utils/breakpoints";
+import mobile_banner from "../common/assets/mobile_banner.png";
+import { GiHamburgerMenu } from "react-icons/gi"
+import resolveConfig from "tailwindcss/resolveConfig"
+import tailwindCOnfig from "../common/tailwind.config";
+const {theme} = resolveConfig(tailwindCOnfig);
+const {colors} = theme;
 
 const Container = styled.div`
   display: flex;
   flex-direction: column;
   height: 100%;
   width: 100%;
-  
+
   @media ${bp.md} {
     display: grid;
     grid-template-columns: 200px 1fr 200px;
@@ -18,47 +24,49 @@ const Container = styled.div`
   }
 
   nav {
-      grid-column: span 3;
-      background-color: #369;
+    grid-column: span 3;
+    background-color: #369;
   }
 
   main {
-      flex: 1;
-      @media ${bp.md} {
-          grid-column-start:2;
-      }
+    flex: 1;
+    @media ${bp.md} {
+      grid-column-start: 2;
+    }
   }
 
-
   footer {
-      grid-column: span 3;
-      background-color: #690;
+    grid-column: span 3;
+    background-color: #690;
   }
 
   aside {
-    grid-column-start:3;
+    grid-column-start: 3;
   }
 
   .left {
-      grid-column-start:1;
+    grid-column-start: 1;
   }
-}
+
+  .header {
+
+    background-size: 100% 129px;
+  }
 `;
 
 type SideMenuProps = { hide: boolean };
 const SideMenu = styled.div<SideMenuProps>`
-    position: fixed;
+  position: fixed;
   left: 0;
   top: 0;
   background-color: black;
   transition: transform 0.3s cubic-bezier(0, 0.52, 0, 1);
-  overflow: ${(props) => (props.hide ? "scroll" : "hidden")}
+  overflow: ${(props) => (props.hide ? "scroll" : "hidden")};
   z-index: 1599;
   height: 100vh;
   width: 100vw;
   transform: ${(props) =>
-    props.hide ? "translate3d(-100vw, 0, 0)" : "translate3d(0vw, 0, 0)"}
-  }
+    props.hide ? "translate3d(-100vw, 0, 0)" : "translate3d(0vw, 0, 0)"};
   transition: transform 500ms ease-out;
   display: flex;
   flex-direction: column;
@@ -66,11 +74,11 @@ const SideMenu = styled.div<SideMenuProps>`
   padding-left: 35px;
 
   .link {
-      color: white;
-      max-width: 150px;
-      font-size: 1.5rem;
-      text-decoration: none;
-      padding-bottom: 2rem;
+    color: white;
+    max-width: 150px;
+    font-size: 1.5rem;
+    text-decoration: none;
+    padding-bottom: 2rem;
   }
 `;
 
@@ -107,8 +115,8 @@ export const FullLayout = (props: LayoutProps) => {
     dispatch(actions.hideMenu());
   };
   return (
-    <Container className="bg-peach">
-      <SideMenu hide={!isMenuOpen} onClick={handleMouseDown}>
+    <Container className="bg-sand-400">
+      {/* <SideMenu hide={!isMenuOpen} onClick={handleMouseDown}>
         <button
           className="w-full text-white text-2xl inline-flex justify-start my-4 hover:text-red-100 focus:outline-none"
           onClick={() => handleLinkClick(Paths.CONSENT_FORM)}
@@ -129,8 +137,8 @@ export const FullLayout = (props: LayoutProps) => {
         >
           <span>Contact Us</span>
         </button>
-      </SideMenu>
-      <nav>
+      </SideMenu> */}
+      {/* <nav>
         <div className="w-full flex justify-between bg-white items-center">
           <header className="text-xl bg-opacity-75 py-6 pl-4 flex-grow">
             <span onClick={() => history.push("/")} className="cursor-pointer">
@@ -189,10 +197,40 @@ export const FullLayout = (props: LayoutProps) => {
             </li>
           </ul>
         </div>
-      </nav>
-      <div className="left bg-peach" />
-      <main className="p-8 bg-skin ">{props.children}</main>
-      <aside className="bg-peach" />
+      </nav> */}
+      <Nav2 />
+      <main className="p-8 bg-sand-400 container mx-auto">
+        {props.children}
+      </main>
     </Container>
+  );
+};
+
+const StNav = styled.div`
+    .placeholder {
+      height: 129px;
+      position: relative;
+    }
+
+    .burger {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      height: 32px;
+      width: 32px;
+      cursor: pointer;
+    }
+  `;
+const Nav2 = () => {
+  
+  return (
+
+    <StNav style={{backgroundImage: `url(${mobile_banner})`}} className="bg-no-repeat bg-cover header md:hidden">
+      <div
+        className="pr-4 md:hidden bg-opacity-75 py-6 placeholder"
+      >
+        <GiHamburgerMenu color={colors.dirtysand['400']} className='burger' height={32} width={32} onClick={() => console.log('this workes?')}/>
+      </div>
+    </StNav>
   );
 };

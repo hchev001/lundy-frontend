@@ -9,13 +9,13 @@ export const RandomCode: React.FC = () => {
   const [surveyId, setSurveyId] = useState("");
   const surveyStarted = useSelector(selectors.surveyStarted);
 
-  useEffect(() => {
-    SubmitSurvey(survey, surveyStarted)
-      .then((r) => {
-        setSurveyId(r.data.data.surveyId);
-      })
-      .catch((e) => console.log(e));
-  }, []);
+  // useEffect(() => {
+  //   SubmitSurvey(survey, surveyStarted)
+  //     .then((r) => {
+  //       setSurveyId(r.data.data.surveyId);
+  //     })
+  //     .catch((e) => console.log(e));
+  // }, []);
   return (
     <FullLayout>
       <div>
