@@ -61,6 +61,18 @@ module.exports = {
       indigo: colors.indigo,
       purple: colors.violet,
       pink: colors.pink,
+
+      mustard: {
+          100: "#fff6e0",
+          200: "#ffeec1",
+          300: "#fee5a1",
+          400: "#fedd82",
+          500: "#fed463",
+          600: "#cbaa4f",
+          700: "#987f3b",
+          800: "#665528",
+          900: "#332a14"
+},
     },
     spacing: {
       px: "1px",

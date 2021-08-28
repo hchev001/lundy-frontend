@@ -1,3 +1,5 @@
+
+//@ts-nocheck
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
@@ -8,6 +10,9 @@ import mobile_banner from "../common/assets/mobile_banner.png";
 import { GiHamburgerMenu } from "react-icons/gi"
 import resolveConfig from "tailwindcss/resolveConfig"
 import tailwindCOnfig from "../common/tailwind.config";
+import { BannerSvg, BannerSvg2 } from "../common/assets";
+import BannerImg from "../common/assets/banners/Banner.png"
+import SvgSun from "../common/assets/sun/sun";
 const {theme} = resolveConfig(tailwindCOnfig);
 const {colors} = theme;
 
@@ -17,41 +22,11 @@ const Container = styled.div`
   height: 100%;
   width: 100%;
 
-  @media ${bp.md} {
-    display: grid;
-    grid-template-columns: 200px 1fr 200px;
-    grid-template-rows: auto 1fr 0fr;
-  }
-
-  nav {
-    grid-column: span 3;
-    background-color: #369;
-  }
 
   main {
     flex: 1;
-    @media ${bp.md} {
-      grid-column-start: 2;
-    }
   }
-
-  footer {
-    grid-column: span 3;
-    background-color: #690;
-  }
-
-  aside {
-    grid-column-start: 3;
-  }
-
-  .left {
-    grid-column-start: 1;
-  }
-
-  .header {
-
-    background-size: 100% 129px;
-  }
+  
 `;
 
 type SideMenuProps = { hide: boolean };
@@ -116,7 +91,7 @@ export const FullLayout = (props: LayoutProps) => {
   };
   return (
     <Container className="bg-sand-400">
-      {/* <SideMenu hide={!isMenuOpen} onClick={handleMouseDown}>
+      <SideMenu hide={!isMenuOpen} onClick={handleMouseDown}>
         <button
           className="w-full text-white text-2xl inline-flex justify-start my-4 hover:text-red-100 focus:outline-none"
           onClick={() => handleLinkClick(Paths.CONSENT_FORM)}
@@ -137,7 +112,7 @@ export const FullLayout = (props: LayoutProps) => {
         >
           <span>Contact Us</span>
         </button>
-      </SideMenu> */}
+      </SideMenu>
       {/* <nav>
         <div className="w-full flex justify-between bg-white items-center">
           <header className="text-xl bg-opacity-75 py-6 pl-4 flex-grow">
@@ -198,7 +173,7 @@ export const FullLayout = (props: LayoutProps) => {
           </ul>
         </div>
       </nav> */}
-      <Nav2 />
+      <Nav2 onClick={() => dispatch(actions.toggleMenu())} />
       <main className="p-8 bg-sand-400 container mx-auto">
         {props.children}
       </main>
@@ -207,6 +182,25 @@ export const FullLayout = (props: LayoutProps) => {
 };
 
 const StNav = styled.div`
+    background-image: url(${props => props.bannerImage});
+    background-size: 100% 129px;
+    height: 129px;
+    position: relative;
+    
+    .sun {
+      position: absolute;
+      top: -16px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 80px;
+    }
+
+    .slogan {
+      position: absolute;
+      top: 40px;
+      left: 32px;
+    }
+
     .placeholder {
       height: 129px;
       position: relative;
@@ -221,15 +215,20 @@ const StNav = styled.div`
       cursor: pointer;
     }
   `;
-const Nav2 = () => {
+const Nav2 = ({onClick}) => {
   
   return (
 
-    <StNav style={{backgroundImage: `url(${mobile_banner})`}} className="bg-no-repeat bg-cover header md:hidden">
+    <StNav bannerImage={BannerImg} className="bg-no-repeat">
+      <SvgSun className={"sun"}/>
+      <div className="slogan">
+        <div className="text-lg font-bold tracking-widest font-serif uppercase text-white">Protect</div>
+        <div className='font-bold font-serif tracking-widest uppercase text-mustard-400'>All The Skin You're In</div>
+      </div>
       <div
         className="pr-4 md:hidden bg-opacity-75 py-6 placeholder"
       >
-        <GiHamburgerMenu color={colors.dirtysand['400']} className='burger' height={32} width={32} onClick={() => console.log('this workes?')}/>
+        <GiHamburgerMenu color={colors.dirtysand['400']} className='burger' height={32} width={32} onClick={() => onClick()}/>
       </div>
     </StNav>
   );

@@ -51,6 +51,17 @@ module.exports = {
         800: '#36A7AA',
         900: '#309497'
       },
+      mustard: {
+        100: "#fff6e0",
+        200: "#ffeec1",
+        300: "#fee5a1",
+        400: "#fedd82",
+        500: "#fed463",
+        600: "#cbaa4f",
+        700: "#987f3b",
+        800: "#665528",
+        900: "#332a14"
+      },
       black: colors.black,
       white: colors.white,
       gray: colors.coolGray,
@@ -207,11 +218,13 @@ module.exports = {
     },
     fontFamily: {
       sans: [
+        '"Segoe UI"',
+        '"calibri"',
+        "Open Sans",
         "ui-sans-serif",
         "system-ui",
         "-apple-system",
         "BlinkMacSystemFont",
-        '"Segoe UI"',
         "Roboto",
         '"Helvetica Neue"',
         "Arial",
@@ -223,6 +236,7 @@ module.exports = {
         '"Noto Color Emoji"',
       ],
       serif: [
+        "Merriweather",
         "ui-serif",
         "Georgia",
         "Cambria",
