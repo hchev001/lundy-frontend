@@ -11,7 +11,7 @@ const BgAsset = styled.div`
   background-image: url(${BeachCoursel});
   background-repeat: no-repeat;
   background-attachment: fixed;
-  background-position: right 80%;
+  background-position: right 78%;
   background-size: auto 100px;
 `
 
@@ -106,6 +106,7 @@ export const ConsentForm = (props: BaseProps) => {
       </div>
       <div>
         <Button
+          className='my-4'
           disabled={false}
           onClick={() => handleGoBack()}
           validationMessage="Click to continue"

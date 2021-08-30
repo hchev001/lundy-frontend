@@ -25,10 +25,12 @@ const Button = ({
   disabled = false,
   validationMessage = "",
   onClick,
-  text = ""
+  text = "", 
+  className='',
 }) => {
 
   const btnClasses = classNames(
+    className,
     "rounded-md",
     "shadow-sm",
     "text-sm",

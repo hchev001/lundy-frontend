@@ -4,6 +4,16 @@ import { useHistory, useLocation } from "react-router-dom";
 import { Button } from "../components/index.js";
 import { FullLayout } from "../layout/FullLayout";
 import { actions, PageNames } from "../store/modules/Events";
+import BeachCoursel from "../common/assets/beach_carousel.png";
+import styled from 'styled-components'
+
+const BgAsset = styled.div`
+  background-image: url(${BeachCoursel});
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: right 78%;
+  background-size: auto 100px;
+`
 
 interface BaseProps {
   history: any;
@@ -32,6 +42,7 @@ export const Disclaimer = (props: BaseProps) => {
 
   return (
     <FullLayout>
+      <BgAsset className='p-8'>
       <div className="w-full flex flex-col justify-center items-center text-center mb-5 font-serif">
         <h3 className='text-3xl'>Sunspot</h3>
         <h4 className='text-sm mt-1'>Consent to participate in a research study</h4>
@@ -95,8 +106,11 @@ export const Disclaimer = (props: BaseProps) => {
           validationMessage="Click to continue"
           hidden={isValid}
           text='Next'
+          className='my-4'
         />
       </div>
+      </BgAsset>
+      
     </FullLayout>
   );
 };
