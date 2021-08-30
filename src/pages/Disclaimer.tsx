@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useHistory, useLocation } from "react-router-dom";
-import { Button } from "../components/Button";
+import { Button } from "../components/index.js";
 import { FullLayout } from "../layout/FullLayout";
 import { actions, PageNames } from "../store/modules/Events";
 
@@ -94,9 +94,8 @@ export const Disclaimer = (props: BaseProps) => {
           onClick={() => history.push("/survey/1")}
           validationMessage="Click to continue"
           hidden={isValid}
-        >
-          Next
-        </Button>
+          text='Next'
+        />
       </div>
     </FullLayout>
   );

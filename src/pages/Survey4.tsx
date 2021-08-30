@@ -2,7 +2,7 @@ import classNames from "classnames";
 import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router";
-import { Button } from "../components/Button";
+import { Button } from "../components";
 import { FullLayout } from "../layout/FullLayout";
 import { actions, PageNames, Transitions } from "../store/modules/Events";
 
@@ -159,7 +159,7 @@ export const Survey4: React.FC = () => {
         </div>
         <div>
           <div>
-            <Button onClick={() => handleFilterClick(0)}>No Filter</Button>
+            <Button onClick={() => handleFilterClick(0)} text='No Filter'/>
           </div>
           <div>
             <Button
@@ -169,9 +169,8 @@ export const Survey4: React.FC = () => {
                 }
                 handleFilterClick(1);
               }}
-            >
-              Hat 1
-            </Button>
+              text='Hat 1'
+            />
           </div>
           <div>
             <Button
@@ -181,9 +180,8 @@ export const Survey4: React.FC = () => {
                 }
                 handleFilterClick(2);
               }}
-            >
-              Hat 2
-            </Button>
+              text='Hat 2'
+            />
           </div>
           <div>
             <Button
@@ -193,9 +191,8 @@ export const Survey4: React.FC = () => {
                 }
                 handleFilterClick(3);
               }}
-            >
-              Mole 3
-            </Button>
+              text='Mole 3'
+            />
           </div>
           <div>
             <button

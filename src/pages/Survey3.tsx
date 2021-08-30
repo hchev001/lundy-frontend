@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router";
-import { Button } from "../components/Button";
+import { Button } from "../components";
 import { FullLayout } from "../layout/FullLayout";
 import { actions, PageNames } from "../store/modules/Events";
 
@@ -33,7 +33,7 @@ export const Survey3: React.FC = () => {
         </span>
       </div>
       <div>
-        <Button onClick={() => history.push("/survey/4")}>Next</Button>
+        <Button onClick={() => history.push("/survey/4")} text="Next"/>
       </div>
     </FullLayout>
   );

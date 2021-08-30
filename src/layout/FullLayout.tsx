@@ -21,6 +21,7 @@ const Container = styled.div`
   flex-direction: column;
   height: 100%;
   width: 100%;
+  position: relative;
 
 
   main {
@@ -59,6 +60,7 @@ const SideMenu = styled.div<SideMenuProps>`
 
 export interface LayoutProps {
   children: React.ReactNode;
+  backgroundImage?: any;
 }
 
 enum Paths {
@@ -90,7 +92,7 @@ export const FullLayout = (props: LayoutProps) => {
     dispatch(actions.hideMenu());
   };
   return (
-    <Container className="bg-sand-400">
+    <Container  bgImage={props.backgroundImage}>
       <SideMenu hide={!isMenuOpen} onClick={handleMouseDown}>
         <button
           className="w-full text-white text-2xl inline-flex justify-start my-4 hover:text-red-100 focus:outline-none"
@@ -113,68 +115,8 @@ export const FullLayout = (props: LayoutProps) => {
           <span>Contact Us</span>
         </button>
       </SideMenu>
-      {/* <nav>
-        <div className="w-full flex justify-between bg-white items-center">
-          <header className="text-xl bg-opacity-75 py-6 pl-4 flex-grow">
-            <span onClick={() => history.push("/")} className="cursor-pointer">
-              SUN-SPOT
-            </span>
-          </header>
-          <div
-            className="pr-4 cursor-pointer md:hidden bg-opacity-75 py-6"
-            onClick={() => dispatch(actions.toggleMenu())}
-          >
-            <svg
-              className="w-6 h-6 stroke-current text-mustard"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M4 6h16M4 12h16M4 18h16"
-              />
-            </svg>
-          </div>
-          <ul className="hidden md:flex md:justify-between md:items-center">
-            <li className="mx-2">
-              <div>
-                <button
-                  onClick={() => handleLinkClick(Paths.WHAT_IS_AR)}
-                  className="my-2"
-                >
-                  What Is AR?
-                </button>
-              </div>
-            </li>
-            <li className="mx-1">
-              <div>
-                <button
-                  onClick={() => handleLinkClick(Paths.CONSENT_FORM)}
-                  className="my-2"
-                >
-                  Consent Form
-                </button>
-              </div>
-            </li>
-            <li className="mx-2">
-              <div>
-                <button
-                  onClick={() => handleLinkClick(Paths.CONTACT_US)}
-                  className="my-2"
-                >
-                  Contact Us
-                </button>
-              </div>
-            </li>
-          </ul>
-        </div>
-      </nav> */}
       <Nav2 onClick={() => dispatch(actions.toggleMenu())} />
-      <main className="p-8 bg-sand-400 container mx-auto">
+      <main className=" bg-sand-400 container mx-auto">
         {props.children}
       </main>
     </Container>

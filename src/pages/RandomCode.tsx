@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Button } from "../components/Button";
+import { Button } from "../components";
 import { FullLayout } from "../layout/FullLayout";
 import { selectors, SubmitSurvey } from "../store/modules/Events";
 
@@ -35,7 +35,7 @@ export const RandomCode: React.FC = () => {
       </div>
 
       <div>
-        <Button onClick={() => window.close()}>Close</Button>
+        <Button onClick={() => window.close()} text="Close"/ >
       </div>
     </FullLayout>
   );

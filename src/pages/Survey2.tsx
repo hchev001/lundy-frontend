@@ -2,7 +2,7 @@ import classNames from "classnames";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router";
-import { Button } from "../components/Button";
+import { Button } from "../components";
 import { FullLayout } from "../layout/FullLayout";
 import {
   actions,
@@ -160,7 +160,7 @@ export const Survey2: React.FC = () => {
 
         <div className="lg:w-3/4 lg:justify-self-center">
           <div>
-            <Button onClick={() => handleFilterClick(0)}>No Filter</Button>
+            <Button onClick={() => handleFilterClick(0)} text='No Filter' />
           </div>
           <div>
             <Button
@@ -170,9 +170,8 @@ export const Survey2: React.FC = () => {
                 }
                 handleFilterClick(1);
               }}
-            >
-              Age 1
-            </Button>
+              text="Age 1"
+            />
           </div>
           <div>
             <Button
@@ -182,9 +181,8 @@ export const Survey2: React.FC = () => {
                 }
                 handleFilterClick(2);
               }}
-            >
-              Age 2
-            </Button>
+              text='Age 2'
+            />
           </div>
           <div>
             <Button
@@ -194,9 +192,8 @@ export const Survey2: React.FC = () => {
                 }
                 handleFilterClick(3);
               }}
-            >
-              Age 3
-            </Button>
+              text='Age 3'
+            />
           </div>
           <div>
             <button
