@@ -62,6 +62,17 @@ module.exports = {
         800: "#665528",
         900: "#332a14"
       },
+      brown: {
+        100: "#e8e0d7",
+        200: "#d1c0af",
+        300: "#b9a188",
+        400: "#a28160",
+        500: "#8b6238",
+        600: "#6f4e2d",
+        700: "#533b22",
+        800: "#382716",
+        900: "#1c140b"
+    },
       black: colors.black,
       white: colors.white,
       gray: colors.coolGray,
