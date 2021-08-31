@@ -20,32 +20,37 @@ const BgAsset = styled.div`
   }
 `;
 
-export const Survey1: React.FC = () => {
+export const Survey12: React.FC = () => {
   const history = useHistory();
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(actions.visitPage(new Date()));
-    return () => {
-      dispatch(actions.leavePage(PageNames.MESSAGE_1_PAGE, new Date()));
-    };
-  }, []);
+  // useEffect(() => {
+  //   dispatch(actions.visitPage(new Date()));
+  //   return () => {
+  //     dispatch(actions.leavePage(PageNames.MESSAGE_1_PAGE, new Date()));
+  //   };
+  // }, []);
   return (
     <FullLayout>
       <BgAsset className='p-8 font-sants text-brown-500'>
-        <div><span className='font-serif text-3xl'>Skin cancer</span> is the most common cancer in the United States, <span className='font-bold'>but most skin cancers can be prevented!</span></div>
+        <div><span className='font-sans text-xl font-bold'>Melanoma</span> is the deadliest form of skin cancer.</div>
 
         <div className='mt-6 mb-6'>
           <span className='font-bold'>Every year --</span>
           <br />
           <br />
           <ul className='pl-2' >
-            <li>Nearly <span className='text-teal-700 font-bold'>5 milliion</span> people are treated for skin cancer at a cost of more than $8 billion.</li>
-            <li>There are about <span className='text-teal-700 font-bold'>76,000</span> new cases of and <span className='text-teal-700 font-bold'>9,000</span> deaths from melanoma, the dealiest from of skin cancer.</li>
+            <li><span>Every hour</span> there are <span>more than 2</span> people dead of skin cancer in the U.S.</li>
+            <li>
+              <span>1 in 5</span> Americans will develop skin cancer by the age of 70
+            </li>
+            <li>
+              Melanoma can develop <span>anywhere</span> on the body - eyes, scalp, nails, mouth, etc.
+            </li>
           </ul>
         </div>
       <div>
-        <Button onClick={() => history.push("/survey/1-2")} text='Next'/>
+        <Button onClick={() => history.push("/survey/1-3")} text='Next'/>
       </div>
       </BgAsset>
     </FullLayout>
