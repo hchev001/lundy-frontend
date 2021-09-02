@@ -28,7 +28,7 @@
     "typescript": "^4.1.2",
     "web-vitals": "^1.0.1"
   },
-  "homepage": "https://sun-spot.org",
+  "homepage": "https://sun-spot.org/",
   "scripts": {
     "start": "craco start",
     "build": "craco build",
