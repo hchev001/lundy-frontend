@@ -5,6 +5,13 @@ import { useHistory } from "react-router";
 import { Button } from "../components";
 import { FullLayout } from "../layout/FullLayout";
 import { actions, PageNames, Transitions } from "../store/modules/Events";
+import styled from "styled-components";
+import { NoDamageGif, HatGif, SunglassesGif } from "../common/assets";
+
+const GifLoader = styled.img`
+  height: 100%;
+  width: 240px;
+`;
 
 interface FilterViewedState {
   noFilter: boolean;
@@ -16,7 +23,7 @@ interface FilterViewedState {
 export const Survey4: React.FC = () => {
   const history = useHistory();
   const dispatch = useDispatch();
-  const [gifStates, setGiftStates] = useState<number[]>([]);
+  const [statesSeen, setStatesSeen] = useState<number[]>([]);
   const [state, setState] = useState<FilterViewedState>({
     noFilter: false,
     filter1: false,
@@ -29,6 +36,7 @@ export const Survey4: React.FC = () => {
    * track the time it was seen
    */
   const [gifState, setGifState] = useState(-1);
+
   useEffect(() => {
     dispatch(actions.visitPage(new Date()));
     return () => {
@@ -45,7 +53,7 @@ export const Survey4: React.FC = () => {
   }, [gifState]);
 
   const handleNext = () => {
-    if (gifStates.length > 1) {
+    if (statesSeen.length > 1) {
       history.push("/survey/5");
     }
   };
@@ -57,175 +65,77 @@ export const Survey4: React.FC = () => {
     if (filterState === 0) {
       dispatch(actions.clickLink(Transitions.CLICK_NO_MOLE_FILTER));
       setGifState(0);
-      setState({ ...state, noFilter: true });
     } else if (filterState === 1) {
       dispatch(actions.clickLink(Transitions.CLICK_MOLE_1));
       setGifState(1);
       setState({ ...state, filter1: true });
+
+      // if we haven't sen this filter, add it to the list of seen filters
+      if (!statesSeen.includes(1)) {
+        setStatesSeen([...statesSeen, 1]);
+      }
     } else if (filterState === 2) {
       dispatch(actions.clickLink(Transitions.CLICK_MOLE_2));
       setGifState(2);
       setState({ ...state, filter2: true });
-    } else if (filterState === 3) {
-      dispatch(actions.clickLink(Transitions.CLICK_MOLE_3));
-      setGifState(3);
-      setState({ ...state, filter3: true });
+
+      // if we haven't sen this filter, add it to the list of seen filters
+      if (!statesSeen.includes(2)) {
+        setStatesSeen([...statesSeen, 2]);
+      }
     }
   };
 
   return (
     <FullLayout>
-      <div>Something about Hats and Moles</div>
-      <div className="mb-4">
+      <div className="mb-4 p-8 container mx-auto flex justify-center flex align-center">
+        {gifState === 0 && (
+          <div>
+            <GifLoader src={NoDamageGif} />
+          </div>
+        )}
         {gifState === 1 && (
-          <div
-            style={{
-              width: "100%",
-              height: 0,
-              paddingBottom: "54%",
-              position: "relative",
-            }}
-          >
-            <iframe
-              title="mole1"
-              src="https://giphy.com/embed/GrUhLU9q3nyRG"
-              width="100%"
-              height="100%"
-              style={{ position: "absolute" }}
-              frameBorder="0"
-              className="giphy-embed"
-            ></iframe>
+          <div>
+            <GifLoader src={SunglassesGif} />
           </div>
         )}
 
         {gifState === 2 && (
-          <div
-            style={{
-              width: "100%",
-              height: 0,
-              paddingBottom: "50%",
-              position: "relative",
-            }}
-          >
-            <iframe
-              title="nose2"
-              src="https://giphy.com/embed/Nt8Q1I8rlfzZS"
-              width="100%"
-              height="100%"
-              style={{ position: "absolute" }}
-              frameBorder="0"
-              className="giphy-embed"
-            ></iframe>
-          </div>
-        )}
-
-        {gifState === 3 && (
-          <div
-            style={{
-              width: "100%",
-              height: 0,
-              paddingBottom: "50%",
-              position: "relative",
-            }}
-          >
-            <iframe
-              title="nose3"
-              src="https://giphy.com/embed/lo9wzT7ENLVX04TIGZ"
-              width="100%"
-              height="100%"
-              style={{ position: "absolute" }}
-              frameBorder="0"
-              className="giphy-embed"
-            ></iframe>
+          <div>
+            <GifLoader src={HatGif} />
           </div>
         )}
       </div>
-      <div className="lg:grid lg:grid-cols-2 lg:mb-4">
-        <div>
-          <span>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer
-            aliquam ultrices ante. Nulla vel est malesuada, luctus dui ut,
-            dapibus felis. Vestibulum accumsan, nisi eu tempus vestibulum,
-            sapien nulla consequat massa, auctor egestas ligula ipsum at justo.
-            Nulla accumsan, eros pharetra ornare ultricies, dui magna dictum
-            risus, ac vulputate risus mauris rhoncus felis. Vestibulum in orci
-            sed leo cursus scelerisque sed nec lorem. Aenean ac purus ex.
-            Quisque gravida suscipit nulla ac sollicitudin. Nullam tincidunt
-            suscipit est in feugiat. Praesent lacinia vestibulum ex, sed mattis
-            diam tristique vitae. Praesent nec mollis libero. Cras vitae metus
-            sapien. Aenean vitae ex ipsum. Aenean quis hendrerit diam. Aliquam
-            volutpat augue porta, tempor ex ac, commodo nisi.
-          </span>
-        </div>
+      <div className="pb-8 pt-4 px-8 container lg:grid lg:grid-cols-2 lg:mb-4">
         <div>
           <div>
-            <Button onClick={() => handleFilterClick(0)} text='No Filter'/>
+            <Button onClick={() => handleFilterClick(0)} text="None" className="mb-4"/>
           </div>
           <div>
             <Button
               onClick={() => {
-                if (!gifStates.includes(1)) {
-                  setGiftStates([...gifStates, 1]);
-                }
                 handleFilterClick(1);
               }}
-              text='Hat 1'
+              text="Sunglasses"
+              className='mb-4'
             />
           </div>
           <div>
             <Button
               onClick={() => {
-                if (!gifStates.includes(2)) {
-                  setGiftStates([...gifStates, 2]);
-                }
                 handleFilterClick(2);
               }}
-              text='Hat 2'
+              text="Hat"
+              className='mb-4'
             />
           </div>
           <div>
             <Button
-              onClick={() => {
-                if (!gifStates.includes(3)) {
-                  setGiftStates([...gifStates, 3]);
-                }
-                handleFilterClick(3);
-              }}
-              text='Mole 3'
-            />
-          </div>
-          <div>
-            <button
-              type="button"
-              disabled={gifStates.length > 1 ? false : true}
-              className={classNames(
-                { "hover:border-red-200": gifStates.length > 1 },
-                { "hover:bg-gray-50": gifStates.length > 1 },
-                { "bg-white": gifStates.length > 1 },
-                { "opacity-0": gifStates.length < 2 },
-                { "opacity-100": gifStates.length > 1 },
-                "transition-opacity",
-                "ease-out",
-                "duration-300",
-                "mt-4",
-                "inline-flex",
-                "justify-center",
-                "w-full",
-                "rounded-md",
-                "border",
-                "border-gray-300",
-                "shadow-sm",
-                "px-4",
-                "py-2",
-                "text-sm",
-                "font-medium",
-                "text-gray-700",
-                "focus:outline-none"
-              )}
+              className="mb-4"
+              text="Next"
+              disabled={statesSeen.length < 2}
               onClick={() => handleNext()}
-            >
-              Next
-            </button>
+            />
           </div>
         </div>
       </div>

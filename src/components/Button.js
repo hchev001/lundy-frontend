@@ -31,6 +31,7 @@ const Button = ({
 
   const btnClasses = classNames(
     className,
+    {"disabled": disabled},
     "rounded-md",
     "shadow-sm",
     "text-sm",

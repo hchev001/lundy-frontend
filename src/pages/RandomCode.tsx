@@ -6,7 +6,7 @@ import { selectors, SubmitSurvey } from "../store/modules/Events";
 
 export const RandomCode: React.FC = () => {
   const survey = useSelector(selectors.survey);
-  const [surveyId, setSurveyId] = useState("");
+  const [surveyId, setSurveyId] = useState("placeholder_code");
   const surveyStarted = useSelector(selectors.surveyStarted);
 
   // useEffect(() => {
@@ -18,25 +18,26 @@ export const RandomCode: React.FC = () => {
   // }, []);
   return (
     <FullLayout>
-      <div>
-        <span className="text-2xl">Survey Code</span>
+      <div className="container p-8">
+      <div className="w-full text-center text-3xl">
+        Thank you!
       </div>
+      <div className="w-full text-center text-3xl">Your assigned ID is:</div>
+      <div className="py-4 text-3xl text-teal-700 font-bold w-full text-center">{surveyId}</div>
 
-      <div className="w-full flex justify-center">
-        <span className="text-lg my-4">{surveyId}</span>
-      </div>
-      <div>
-        <span>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer
-          aliquam ultrices ante. Nulla vel est malesuada, luctus dui ut, dapibus
-          felis. Vestibulum accumsan, nisi eu tempus vestibulum, sapien nulla
-          consequat massa, auctor egestas ligula ipsum at justo. Nulla accumsan
-        </span>
-      </div>
+      <div className='my-2 text-2xl text-red-500 font-bold w-full text-center'>Please write this ID on a sheet of paper.</div>
+      <div className='my-2 text-2xl text-red-500 font-bold w-full text-center'>Then go back to the survey page and input the ID.</div>
 
+      <div className='my-2'>NOTE: To complete this study and receive your rewards or incentives through the sampling company, please be sure to record the correct ID and type it in the follow up survey.</div>
+
+      <div className='mt-2 mb-8'>DO NOT close this tab unless you have the ID. Thank you.</div>
+
+      
       <div>
         <Button onClick={() => window.close()} text="Close"/ >
       </div>
+      </div>
+      
     </FullLayout>
   );
 };

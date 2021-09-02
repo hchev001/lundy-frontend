@@ -24,15 +24,15 @@ export const Survey1: React.FC = () => {
   const history = useHistory();
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(actions.visitPage(new Date()));
-    return () => {
-      dispatch(actions.leavePage(PageNames.MESSAGE_1_PAGE, new Date()));
-    };
-  }, []);
+  // useEffect(() => {
+  //   dispatch(actions.visitPage(new Date()));
+  //   return () => {
+  //     dispatch(actions.leavePage(PageNames.MESSAGE_1_PAGE, new Date()));
+  //   };
+  // }, []);
   return (
     <FullLayout>
-      <BgAsset className='p-8 font-sants text-brown-500'>
+      <BgAsset className='p-8 font-sans text-brown-500'>
         <div><span className='font-serif text-3xl'>Skin cancer</span> is the most common cancer in the United States, <span className='font-bold'>but most skin cancers can be prevented!</span></div>
 
         <div className='mt-6 mb-6'>

@@ -4,37 +4,47 @@ import { useHistory } from "react-router";
 import { Button } from "../components";
 import { FullLayout } from "../layout/FullLayout";
 import { actions, PageNames } from "../store/modules/Events";
+import styled from "styled-components";
+import CaretRight from '../common/assets/caret-right.png';
 
-export const Survey3: React.FC = () => {
+const BgAsset = styled.div`
+
+  li {
+    background: url(${CaretRight});
+    background-size: 24px 24px;
+    background-repeat: no-repeat;
+    margin: 0 6px 0 0;
+    padding: 0px 0px 1px 26px;
+    vertical-align: middle;
+    list-style-type: none;
+  }
+`;
+
+export const Survey31: React.FC = () => {
   const history = useHistory();
   const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(actions.visitPage(new Date()));
-    return () => {
-      dispatch(actions.leavePage(PageNames.MESSAGE_2_PAGE, new Date()));
-    };
-  }, []);
+  // useEffect(() => {
+  //   dispatch(actions.visitPage(new Date()));
+  //   return () => {
+  //     dispatch(actions.leavePage(PageNames.MESSAGE_2_PAGE, new Date()));
+  //   };
+  // }, []);
   return (
     <FullLayout>
-      <div>
-        <span>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer
-          aliquam ultrices ante. Nulla vel est malesuada, luctus dui ut, dapibus
-          felis. Vestibulum accumsan, nisi eu tempus vestibulum, sapien nulla
-          consequat massa, auctor egestas ligula ipsum at justo. Nulla accumsan,
-          eros pharetra ornare ultricies, dui magna dictum risus, ac vulputate
-          risus mauris rhoncus felis. Vestibulum in orci sed leo cursus
-          scelerisque sed nec lorem. Aenean ac purus ex. Quisque gravida
-          suscipit nulla ac sollicitudin. Nullam tincidunt suscipit est in
-          feugiat. Praesent lacinia vestibulum ex, sed mattis diam tristique
-          vitae. Praesent nec mollis libero. Cras vitae metus sapien. Aenean
-          vitae ex ipsum. Aenean quis hendrerit diam. Aliquam volutpat augue
-          porta, tempor ex ac, commodo nisi.
-        </span>
+      <BgAsset className='p-8 font-sans text-brown-500'>
+      <div className='text-teal-700 text-3xl'>Most skin cancers can be prevented.</div>
+      <div className='mt-6 mb-6'>
+        <ul className='pl-2'>
+          <li className='text-2xl'>When detected early, the 5-year survival rate for melanoma is <span className='font-bold text-teal-700'>99%</span></li>
+          <li className='text-2xl'>It's easy to be protected from UV exposure, just choose sun protection strategies that work:</li>
+        </ul>
       </div>
       <div>
-        <Button onClick={() => history.push("/survey/4")} text="Next"/>
+        <Button onClick={() => history.push("/survey/3-2")} text="Next"/>
       </div>
+      </BgAsset>
+      
+      
     </FullLayout>
   );
 };
