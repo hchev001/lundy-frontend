@@ -9,11 +9,11 @@ import { bp } from "../utils/breakpoints";
 import mobile_banner from "../common/assets/mobile_banner.png";
 import { GiHamburgerMenu } from "react-icons/gi"
 import resolveConfig from "tailwindcss/resolveConfig"
-import tailwindCOnfig from "../common/tailwind.config";
+import tailwind from "../common/tailwind.config";
 import { BannerSvg, BannerSvg2 } from "../common/assets";
 import BannerImg from "../common/assets/banners/Banner.png"
 import SvgSun from "../common/assets/sun/sun";
-const {theme} = resolveConfig(tailwindCOnfig);
+const {theme} = resolveConfig(tailwind);
 const {colors} = theme;
 
 const Container = styled.div`
