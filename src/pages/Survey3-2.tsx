@@ -18,7 +18,7 @@ export const Survey32: React.FC = () => {
   // }, []);
   return (
     <FullLayout>
-      <div className="p-8 font-sans text-brown-500">
+      <div className="p-8 font-sans text-brown-500 text-xl">
         <div className="text-3xl text-teal-700 mb-4 text-center">
           Use a Layered Approach for{" "}
           <span className="font-bold">Sun Protection.</span>
@@ -28,7 +28,7 @@ export const Survey32: React.FC = () => {
             <div className='flex justify-center'>
               <img src={hand_spf_img} className="h-40 w-40 mb-4" />
             </div>
-            <div>
+            <div className='leading-normal'>
               Sunscreen works best when used with share or clothes, and it must
               be re-applied every 2 hours and after swimming, sweating, or
               toweling off.
@@ -41,7 +41,7 @@ export const Survey32: React.FC = () => {
             <div className='justify-center flex'>
               <img src={Sunglasses_img} className="h-40 w-40 mb-4" />
             </div>
-            <div>
+            <div className='leading-normal'>
               Wear a hat, sunglasses, and protective clothing to shield skin.
             </div>
           </div>

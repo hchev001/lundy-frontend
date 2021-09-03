@@ -32,10 +32,10 @@ export const Survey1: React.FC = () => {
   // }, []);
   return (
     <FullLayout>
-      <BgAsset className='p-8 font-sans text-brown-500'>
+      <BgAsset className='p-8 font-sans text-brown-500 text-xl'>
         <div><span className='font-serif text-3xl'>Skin cancer</span> is the most common cancer in the United States, <span className='font-bold'>but most skin cancers can be prevented!</span></div>
 
-        <div className='mt-6 mb-6'>
+        <div className='mt-6 mb-6 leading-normal'>
           <span className='font-bold'>Every year --</span>
           <br />
           <br />

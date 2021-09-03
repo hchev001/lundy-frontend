@@ -31,12 +31,12 @@ export const Survey31: React.FC = () => {
   // }, []);
   return (
     <FullLayout>
-      <BgAsset className='p-8 font-sans text-brown-500'>
+      <BgAsset className='p-8 font-sans text-brown-500 text-xl'>
       <div className='text-teal-700 text-3xl'>Most skin cancers can be prevented.</div>
-      <div className='mt-6 mb-6'>
+      <div className='mt-6 mb-6 leading-normal'>
         <ul className='pl-2'>
-          <li className='text-2xl'>When detected early, the 5-year survival rate for melanoma is <span className='font-bold text-teal-700'>99%</span></li>
-          <li className='text-2xl'>It's easy to be protected from UV exposure, just choose sun protection strategies that work:</li>
+          <li>When detected early, the 5-year survival rate for melanoma is <span className='font-bold text-teal-700'>99%</span></li>
+          <li>It's easy to be protected from UV exposure, just choose sun protection strategies that work:</li>
         </ul>
       </div>
       <div>

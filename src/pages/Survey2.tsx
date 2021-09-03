@@ -48,7 +48,7 @@ export const Survey2: React.FC = () => {
    * Use [0, 1, 2, 3] to denote when to render a gif and also
    * track the time it was seen
    */
-  const [gifState, setGifState] = useState(-1);
+  const [gifState, setGifState] = useState(0);
 
   useEffect(() => {
     dispatch(actions.visitPage(new Date()));

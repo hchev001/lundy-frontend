@@ -32,10 +32,6 @@ export const RandomCode: React.FC = () => {
 
       <div className='mt-2 mb-8'>DO NOT close this tab unless you have the ID. Thank you.</div>
 
-      
-      <div>
-        <Button onClick={() => window.close()} text="Close"/ >
-      </div>
       </div>
       
     </FullLayout>

@@ -17,19 +17,19 @@ export const Survey34: React.FC = () => {
   // }, []);
   return (
     <FullLayout>
-      <div className="p-8 font-sans text-brown-500">
+      <div className="p-8 font-sans text-brown-500 text-xl">
         <div className="flex justify-center mb-4">
           <img src={hat_img} className="h-40 w-40 mb-8" />
         </div>
         <div>
-          <div className='mb-4'>
-            <span className="font-bold text-teal-700 text-xl">Hat: </span>For
+          <div className='mb-4 leading-normal'>
+            <span className="font-bold text-teal-700 text-2xl">Hat: </span>For
             most protection, wear a hat with a brim all the way around that
             shades the face, ears, and back of the neck. A darker hat may may
             offer more UV protection.
           </div>
-          <div className="mb-4">
-            <span className="font-bold text-teal-700 text-xl">
+          <div className="mb-4 leading-normal">
+            <span className="font-bold text-teal-700 text-2xl">
               Sunglasses:{" "}
             </span>
             Sunglasses protect eyes from UV rays and reduce the risk of

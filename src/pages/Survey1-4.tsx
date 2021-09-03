@@ -32,7 +32,7 @@ export const Survey13: React.FC = () => {
   // }, []);
   return (
     <FullLayout>
-      <BgAsset className='p-8 font-sans text-brown-500'>
+      <BgAsset className='p-8 font-sans text-brown-500 text-xl'>
         <div><span className="font-bold">UV and sunlight exposures</span>are responsible for <span>90%</span> of visible changes to the skin, including wrinkles, fine lines, and pigmentation.</div>
 
         <div className="mt-20 mb-20 ml font-serif italic">Click <span>"next"</span> and try on the filters.</div>

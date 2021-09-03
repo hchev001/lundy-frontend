@@ -32,20 +32,17 @@ export const Survey12: React.FC = () => {
   // }, []);
   return (
     <FullLayout>
-      <BgAsset className='p-8 font-sants text-brown-500'>
-        <div><span className='font-sans text-xl font-bold'>Melanoma</span> is the deadliest form of skin cancer.</div>
+      <BgAsset className='p-8 font-sans text-brown-500 text-xl'>
+        <div><span className='text-3xl font-bold'>Melanoma</span> is the deadliest form of skin cancer.</div>
 
         <div className='mt-6 mb-6'>
-          <span className='font-bold'>Every year --</span>
-          <br />
-          <br />
-          <ul className='pl-2' >
-            <li><span>Every hour</span> there are <span>more than 2</span> people dead of skin cancer in the U.S.</li>
+          <ul className='pl-2 leading-normal' >
+            <li><span className='text-teal-700 font-bold'>Every hour</span> there are <span className='text-teal-700 font-bold'>more than 2</span> people dead of skin cancer in the U.S.</li>
             <li>
-              <span>1 in 5</span> Americans will develop skin cancer by the age of 70
+              <span className='text-teal-700 font-bold'>1 in 5</span> Americans will develop skin cancer by the age of 70
             </li>
             <li>
-              Melanoma can develop <span>anywhere</span> on the body - eyes, scalp, nails, mouth, etc.
+              Melanoma can develop <span className='text-teal-700 font-bold'>anywhere</span> on the body - eyes, scalp, nails, mouth, etc.
             </li>
           </ul>
         </div>
