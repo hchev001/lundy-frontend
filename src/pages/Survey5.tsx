@@ -25,7 +25,7 @@ export const Survey5: React.FC = () => {
           conditions like obesity. But it's important to be sun smart when
           playing and working outdoors.
         </div>
-        <div>
+        <div className="md:mt-36">
           <Button onClick={() => history.push("/survey/6")} text="Next" />
         </div>
       </div>

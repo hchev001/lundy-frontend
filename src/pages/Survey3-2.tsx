@@ -46,7 +46,7 @@ export const Survey32: React.FC = () => {
             </div>
           </div>
         </div>
-        <div>
+        <div className="md:mt-36">
           <Button onClick={() => history.push("/survey/3-3")} text="Next" />
         </div>
       </div>

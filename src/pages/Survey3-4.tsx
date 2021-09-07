@@ -43,7 +43,7 @@ export const Survey34: React.FC = () => {
           Click <span>"next"</span> and try on the filters.
         </div>
 
-        <div>
+        <div className="md:mt-36">
           <Button onClick={() => history.push("/survey/4")} text="Next" />
         </div>
       </div>

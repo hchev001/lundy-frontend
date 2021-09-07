@@ -38,7 +38,7 @@ export const Survey13: React.FC = () => {
         <div className="mt-20 mb-20 ml font-serif italic text-teal-700">Anyone, no matter their skin tone can get skin cancer.</div>
 
         
-      <div>
+      <div className="md:mt-36">
         <Button onClick={() => history.push("/survey/2")} text='Next'/>
       </div>
       </BgAsset>

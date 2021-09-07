@@ -46,7 +46,7 @@ export const Survey12: React.FC = () => {
             </li>
           </ul>
         </div>
-      <div>
+      <div className="md:mt-36">
         <Button onClick={() => history.push("/survey/1-3")} text='Next'/>
       </div>
       </BgAsset>

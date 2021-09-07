@@ -2,10 +2,16 @@ import classNames from "classnames";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router";
-import { MinimalDamageGif, ModDamageGif, NoDamageGif, SevDamageGif, SunglassesGif } from "../common/assets";
+import {
+  MinimalDamageGif,
+  ModDamageGif,
+  NoDamageGif,
+  SevDamageGif,
+  SunglassesGif,
+} from "../common/assets";
 import { Button } from "../components";
 import { FullLayout } from "../layout/FullLayout";
-import styled from 'styled-components';
+import styled from "styled-components";
 
 import {
   actions,
@@ -17,7 +23,7 @@ import {
 const GifLoader = styled.img`
   height: 100%;
   width: 240px;
-`
+`;
 
 interface FilterViewedState {
   noFilter: boolean;
@@ -31,7 +37,7 @@ interface FilterViewedState {
  * Minimal Damage
  * Moderate Damage
  * Severe Damage
- * @returns 
+ * @returns
  */
 export const Survey2: React.FC = () => {
   const history = useHistory();
@@ -78,15 +84,14 @@ export const Survey2: React.FC = () => {
     if (filterState === 0) {
       dispatch(actions.clickLink(Transitions.CLICK_NO_OLD_FILTER));
       setGifState(0);
-
     } else if (filterState === 1) {
       dispatch(actions.clickLink(Transitions.CLICK_FILTER_1));
       setGifState(1);
       setState({ ...state, filter1: true });
-      
+
       // if we haven't sen this filter, add it to the list of seen filters
       if (!statesSeen.includes(1)) {
-        setStatesSeen([...statesSeen, 1])
+        setStatesSeen([...statesSeen, 1]);
       }
     } else if (filterState === 2) {
       dispatch(actions.clickLink(Transitions.CLICK_FILTER_2));
@@ -95,7 +100,7 @@ export const Survey2: React.FC = () => {
 
       // if we haven't sen this filter, add it to the list of seen filters
       if (!statesSeen.includes(2)) {
-        setStatesSeen([...statesSeen, 2])
+        setStatesSeen([...statesSeen, 2]);
       }
     } else if (filterState === 3) {
       dispatch(actions.clickLink(Transitions.CLICK_FILTER_3));
@@ -104,7 +109,7 @@ export const Survey2: React.FC = () => {
 
       // if we haven't sen this filter, add it to the list of seen filters
       if (!statesSeen.includes(3)) {
-        setStatesSeen([...statesSeen, 3])
+        setStatesSeen([...statesSeen, 3]);
       }
     }
   };
@@ -112,67 +117,69 @@ export const Survey2: React.FC = () => {
   return (
     <FullLayout>
       <div className="container">
-      <div className="mb-4 p-8 container mx-auto flex justify-center align-center">
-        {gifState === 0 && (
-          <div>
-            <GifLoader src={NoDamageGif} />
-          </div>
-        )}
+        <div className="mb-4 p-8 container mx-auto flex justify-center align-center">
+          {gifState === 0 && (
+            <div>
+              <GifLoader src={NoDamageGif} />
+            </div>
+          )}
 
-        {gifState === 1 && (
-          <div>
-            <GifLoader src={MinimalDamageGif} />
-          </div>
-        )}
+          {gifState === 1 && (
+            <div>
+              <GifLoader src={MinimalDamageGif} />
+            </div>
+          )}
 
-        {gifState === 2 && (
-          <div>
-            <GifLoader src={ModDamageGif} />
-          </div>
-        )}
+          {gifState === 2 && (
+            <div>
+              <GifLoader src={ModDamageGif} />
+            </div>
+          )}
 
           {gifState === 3 && (
-          <div>
-            <GifLoader src={SevDamageGif} />
-          </div>
-        )}
-      </div>
+            <div>
+              <GifLoader src={SevDamageGif} />
+            </div>
+          )}
+        </div>
 
-      <div>
-
-
-        <div className="px-4 container lg:w-3/4 lg:justify-self-center">
+        <div className='flex flex-col items-center'>
+          <div className="px-4 container lg:w-3/4 lg:justify-self-center">
             <Button
               className="mb-4"
-            onClick={() => handleFilterClick(0)} text='No Damage' />
+              onClick={() => handleFilterClick(0)}
+              text="No Damage"
+            />
             <Button
-            className="mb-4"
+              className="mb-4"
               onClick={() => {
-
                 handleFilterClick(1);
               }}
               text="Minimal Sun Damage"
             />
             <Button
-            className="mb-4"
+              className="mb-4"
               onClick={() => {
                 handleFilterClick(2);
               }}
-              text='Moderate Sun Damage'
+              text="Moderate Sun Damage"
             />
             <Button
-            className="mb-4"
+              className="mb-4"
               onClick={() => {
-
                 handleFilterClick(3);
               }}
-              text='Severe Sun Damage'
+              text="Severe Sun Damage"
             />
-            <Button className="mb-4" text="Next" disabled={statesSeen.length < 2} onClick={() => handleNext()}/>
+            <Button
+              className="mb-4"
+              text="Next"
+              disabled={statesSeen.length < 2}
+              onClick={() => handleNext()}
+            />
+          </div>
         </div>
       </div>
-      </div>
-      
     </FullLayout>
   );
 };

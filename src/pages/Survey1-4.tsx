@@ -38,7 +38,7 @@ export const Survey13: React.FC = () => {
         <div className="mt-20 mb-20 ml font-serif italic">Click <span>"next"</span> and try on the filters.</div>
 
         
-      <div>
+      <div className="md:mt-36">
         <Button onClick={() => history.push("/survey/2")} text='Next'/>
       </div>
       </BgAsset>

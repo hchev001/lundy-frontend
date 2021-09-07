@@ -44,7 +44,7 @@ export const Survey1: React.FC = () => {
             <li>There are about <span className='text-teal-700 font-bold'>76,000</span> new cases of and <span className='text-teal-700 font-bold'>9,000</span> deaths from melanoma, the dealiest from of skin cancer.</li>
           </ul>
         </div>
-      <div>
+      <div className="md:mt-36">
         <Button onClick={() => history.push("/survey/1-2")} text='Next'/>
       </div>
       </BgAsset>

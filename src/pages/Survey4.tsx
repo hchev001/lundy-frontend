@@ -88,54 +88,60 @@ export const Survey4: React.FC = () => {
 
   return (
     <FullLayout>
-      <div className="mb-4 p-8 container mx-auto flex justify-center flex align-center">
-        {gifState === 0 && (
-          <div>
-            <GifLoader src={NoDamageGif} />
-          </div>
-        )}
-        {gifState === 1 && (
-          <div>
-            <GifLoader src={SunglassesGif} />
-          </div>
-        )}
+      <div className="container">
+        <div className="mb-4 p-8 container mx-auto justify-center flex align-center">
+          {gifState === 0 && (
+            <div>
+              <GifLoader src={NoDamageGif} />
+            </div>
+          )}
+          {gifState === 1 && (
+            <div>
+              <GifLoader src={SunglassesGif} />
+            </div>
+          )}
 
-        {gifState === 2 && (
-          <div>
-            <GifLoader src={HatGif} />
-          </div>
-        )}
-      </div>
-      <div className="pb-8 pt-4 px-8 container lg:grid lg:grid-cols-2 lg:mb-4">
-        <div>
-          <div>
-            <Button onClick={() => handleFilterClick(0)} text="None" className="mb-4"/>
-          </div>
-          <div>
-            <Button
-              onClick={() => {
-                handleFilterClick(1);
-              }}
-              text="Sunglasses"
-              className='mb-4'
-            />
-          </div>
-          <div>
-            <Button
-              onClick={() => {
-                handleFilterClick(2);
-              }}
-              text="Hat"
-              className='mb-4'
-            />
-          </div>
-          <div>
-            <Button
-              className="mb-4"
-              text="Next"
-              disabled={statesSeen.length < 2}
-              onClick={() => handleNext()}
-            />
+          {gifState === 2 && (
+            <div>
+              <GifLoader src={HatGif} />
+            </div>
+          )}
+        </div>
+        <div className="flex flex-col items-center">
+          <div className="px-4 container">
+            <div>
+              <Button
+                onClick={() => handleFilterClick(0)}
+                text="None"
+                className="mb-4"
+              />
+            </div>
+            <div>
+              <Button
+                onClick={() => {
+                  handleFilterClick(1);
+                }}
+                text="Sunglasses"
+                className="mb-4"
+              />
+            </div>
+            <div>
+              <Button
+                onClick={() => {
+                  handleFilterClick(2);
+                }}
+                text="Hat"
+                className="mb-4"
+              />
+            </div>
+            <div>
+              <Button
+                className="mb-4"
+                text="Next"
+                disabled={statesSeen.length < 2}
+                onClick={() => handleNext()}
+              />
+            </div>
           </div>
         </div>
       </div>

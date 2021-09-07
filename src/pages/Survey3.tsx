@@ -39,7 +39,7 @@ export const Survey31: React.FC = () => {
           <li>It's easy to be protected from UV exposure, just choose sun protection strategies that work:</li>
         </ul>
       </div>
-      <div>
+      <div className="md:mt-36">
         <Button onClick={() => history.push("/survey/3-2")} text="Next"/>
       </div>
       </BgAsset>
