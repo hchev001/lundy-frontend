@@ -18,7 +18,8 @@ const { colors } = theme;
 const Container = styled.div`
   display: flex;
   flex-direction: column;
-  height: 100%;
+  /* height: 100%; */
+  /* min-height: 100%; */
   width: 100%;
   position: relative;
 
@@ -89,7 +90,7 @@ export const FullLayout = (props: LayoutProps) => {
     dispatch(actions.hideMenu());
   };
   return (
-    <Container bgImage={props.backgroundImage}>
+    <Container bgImage={props.backgroundImage} className="bg-sand-400">
       <SideMenu hide={!isMenuOpen} onClick={handleMouseDown}>
         <button
           className="w-full text-white text-2xl inline-flex justify-start my-4 hover:text-red-100 focus:outline-none"
@@ -112,7 +113,10 @@ export const FullLayout = (props: LayoutProps) => {
           <span>Contact Us</span>
         </button>
       </SideMenu>
-      <Nav2 onClick={() => dispatch(actions.toggleMenu())} handleLinkClick={handleLinkClick}/>
+      <Nav2
+        onClick={() => dispatch(actions.toggleMenu())}
+        handleLinkClick={handleLinkClick}
+      />
       <main className=" bg-sand-400 container mx-auto">{props.children}</main>
     </Container>
   );
@@ -121,8 +125,8 @@ export const FullLayout = (props: LayoutProps) => {
 const StNav = styled.div`
   background-image: url(${(props) => props.bannerImage});
   background-size: 100% 129px;
-  height: 129px;
   position: relative;
+  flex: 1 0 129px;
 
   .sun {
     position: absolute;
@@ -171,27 +175,32 @@ const StNav = styled.div`
       cursor: pointer;
     }
   }
+
+  @media (min-width: 768px) {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    .slogan {
+      position: relative;
+      bottom: 0px;
+      top: -38px;
+      left: 26px;
+    }
+  }
 `;
 const Nav2 = ({ onClick, handleLinkClick }) => {
   return (
     <StNav bannerImage={BannerImg} className="bg-no-repeat">
       <SvgSun className={"sun"} />
-      <div className="slogan">
-        <div className="text-lg font-bold tracking-widest font-serif uppercase text-white">
-          Protect
+      <div className='container relative mx-auto'>
+        <div className="slogan">
+          <div className="text-lg font-bold tracking-widest font-serif uppercase text-white">
+            Protect
+          </div>
+          <div className="font-bold font-serif tracking-widest uppercase text-mustard-400">
+            All The Skin You're In
+          </div>
         </div>
-        <div className="font-bold font-serif tracking-widest uppercase text-mustard-400">
-          All The Skin You're In
-        </div>
-      </div>
-      <div className="pr-4 bg-opacity-75 py-6 placeholder">
-        <GiHamburgerMenu
-          color={colors.dirtysand["400"]}
-          className="burger"
-          height={32}
-          width={32}
-          onClick={() => onClick()}
-        />
         <div className="nav-menu text-sm text-sand-400">
           <button
             className="hover:text-brown-400 hover:underline bg-transparent flex-1 border-none p-0"
@@ -214,6 +223,16 @@ const Nav2 = ({ onClick, handleLinkClick }) => {
             Contact Us
           </button>
         </div>
+      </div>
+
+      <div className="pr-4 bg-opacity-75 py-6 placeholder lg:hidden">
+        <GiHamburgerMenu
+          color={colors.dirtysand["400"]}
+          className="burger"
+          height={32}
+          width={32}
+          onClick={() => onClick()}
+        />
       </div>
     </StNav>
   );
