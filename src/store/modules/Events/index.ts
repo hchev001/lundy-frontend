@@ -38,6 +38,8 @@ export interface EventState {
   touchCountNoMole: number;
   menuOpen: boolean;
   surveyStarted: boolean;
+
+
 }
 
 const initialState: EventState = {
@@ -82,8 +84,21 @@ export enum Transitions {
   LEAVE_PAGE = "leave_page",
 
   VIEW_MESSAGE_1_PAGE = "view_message_1_page",
-  VIEW_MESSAGE_2_PAGE = "view_message_2_page",
+  VIEW_MESSAGE_12_PAGE = "view_message_1-2_page",
+  VIEW_MESSAGE_13_PAGE = "view_message_1-3_page",
+  VIEW_MESSAGE_14_PAGE = "view_message_1-4_page",
+
+  VIEW_MESSAGE_2_PAGE = "view_message_2_page", // first set of filters 
+  
   VIEW_MESSAGE_3_PAGE = "view_message_3_page",
+  VIEW_MESSAGE_32_PAGE = "view_message_3-2_page",
+  VIEW_MESSAGE_33_PAGE = "view_message_3-3_page",
+  VIEW_MESSAGE_34_PAGE = "view_message_3-4_page",
+
+  VIEW_MESSAGE_4_PAGE = "view_message_4_page", // second set of filters
+
+  VIEW_MESSAGE_5_PAGE = "view_message_5_page", // last page before code page
+
   VIEW_CONSENT_FORM = "view_consent_form",
   NO_OLD_FILTER = "noOldTime",
   CLICK_CONSENT_FORM = "clickConsentForm",
