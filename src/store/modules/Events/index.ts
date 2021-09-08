@@ -5,75 +5,92 @@ import axios from "axios";
 import { ApplicationState } from "../..";
 
 export interface EventState {
+  numberOfClicks: number;
   surveyId: string | undefined;
-  eventName: string;
-  eventDuration: number;
-  old1Time: number;
-  old2Time: number;
-  old3Time: number;
-  mole1Time: number;
-  mole2Time: number;
-  mole3Time: number;
-  messagePage1Timer: number;
-  messagePage2Timer: number;
-  messagePage3Timer: number;
-  startTime: number;
-  endTime: number;
-  contactUsTimer: number;
-  whatIsARTimer: number;
-  consentFormTimer: number;
-  noOldTime: number;
-  noMoleTime: number;
+  
+  menu1_Timer: number;
+  menu2_Timer: number;
+  menu3_Timer: number;
+  
+  messagePage1_Timer: number;
+  messagePage2_Timer: number;
+  messagePage3_Timer: number;
+  
+  noneTimer: number;
+  filter1_Timer: number;
+  filter2_Timer: number;
+  filter3_Timer: number;
+  
+  filterNoHat_Timer: number;
+  filterHat1_Timer: 0;
+  filterHat2_Timer:0;
+  
   touchCountMenu1: number;
   touchCountMenu2: number;
   touchCountMenu3: number;
+  
+  timeSpent: number;
+  eventName: string;
+
   touchCount: number;
   touchCountNoFilter: number;
   touchCountFilter1: number;
   touchCountFilter2: number;
   touchCountFilter3: number;
-  touchCountMole1: number;
-  touchCountMole2: number;
-  touchCountMole3: number;
-  touchCountNoMole: number;
+
+  touchCountNoHat: number;
+  touchCountHat1: number;
+  touchCountHat2: number;
+  
+
+
+  eventDuration: number;
+  startTime: number;
+  endTime: number;
   menuOpen: boolean;
   surveyStarted: boolean;
-
-
 }
 
 const initialState: EventState = {
-  eventName: "",
-  eventDuration: -1,
-  noOldTime: 0, //noneTimer
-  old1Time: 0, //filter1_Timer
-  old2Time: 0, //filter2_Timer
-  old3Time: 0, //filter3_Timer
-  noMoleTime: 0, //noneTimer or noneMoleTimer
-  mole1Time: 0, //filter1Mole_Timer
-  mole2Time: 0, //filter2Mole_Timer
-  mole3Time: 0, //filter3Mole_Timer
-  startTime: 0,
-  messagePage1Timer: 0, //messagePage1_Timer
-  messagePage2Timer: 0, //messagePage2_Timer
-  messagePage3Timer: 0, //messagePage3_Timer
-  contactUsTimer: 0, //menu3_Timer
-  whatIsARTimer: 0, //menu1_Timer
-  consentFormTimer: 0, //menu2_Timer
-  endTime: 0,
-  surveyId: "",
+  numberOfClicks: 0,
+  timeSpent: 0,
+  
+  menu1_Timer: 0,
+  menu2_Timer: 0,
+  menu3_Timer: 0,
+ 
+  messagePage1_Timer: 0,
+  messagePage2_Timer: 0,
+  messagePage3_Timer: 0,
+  
+  noneTimer: 0, //noneTimer
+  filter1_Timer: 0, //filter1_Timer
+  filter2_Timer: 0, //filter2_Timer
+  filter3_Timer: 0, //filter3_Timer
+  
+  filterNoHat_Timer: 0, 
+  filterHat1_Timer: 0,
+  filterHat2_Timer: 0, 
+  
   touchCountMenu1: 0, //touchCountMenu1
   touchCountMenu2: 0, //touchCountMenu2
   touchCountMenu3: 0, //touchCountMenu3
+  
   touchCount: 0, //touchCount total?????
-  touchCountFilter1: 0, //touchCountFilter1
-  touchCountFilter2: 0, //touchCountFilter2
-  touchCountFilter3: 0, //touchCountFilter3
-  touchCountNoFilter: 0, //touchCountNoFilter
-  touchCountMole1: 0, //touchCountMole1
-  touchCountMole2: 0, //touchCountMole2
-  touchCountMole3: 0, //touchCountMole3
-  touchCountNoMole: 0, //touchCountMoleNoFilter,
+  touchCountNoFilter: 0, //touchCountFilter1
+  touchCountFilter1: 0, //touchCountFilter2
+  touchCountFilter2: 0, //touchCountFilter3
+  touchCountFilter3: 0, //touchCountNoFilter
+  
+  touchCountNoHat: 0, //touchCountMole1
+  touchCountHat1: 0, //touchCountMole2
+  touchCountHat2: 0, //touchCountMole3
+  
+  eventName: "",
+  eventDuration: -1,
+  startTime: 0,
+  endTime: 0,
+  surveyId: "",
   menuOpen: false,
   surveyStarted: false,
 };
@@ -100,14 +117,15 @@ export enum Transitions {
   VIEW_MESSAGE_5_PAGE = "view_message_5_page", // last page before code page
 
   VIEW_CONSENT_FORM = "view_consent_form",
-  NO_OLD_FILTER = "noOldTime",
+  
   CLICK_CONSENT_FORM = "clickConsentForm",
   CLICK_WHAT_IS_AR = "clickWhatIsAR",
   CLICK_CONTACT_US = "clickContactUs",
-  CLICK_NO_MOLE_FILTER = "touchCountNoMole",
-  CLICK_MOLE_1 = "touchCountMole1",
-  CLICK_MOLE_2 = "touchCountMole2",
-  CLICK_MOLE_3 = "touchCountMole3",
+  
+  CLICK_NO_HAT = "touchCountNoHat",
+  CLICK_HAT_1 = "touchCountHat1",
+  CLICK_HAT_2 = "touchCountHat",
+
   CLICK_NO_OLD_FILTER = "touchCountNoFilter",
   CLICK_FILTER_1 = "touchCountFilter1",
   CLICK_FILTER_2 = "touchCountFilter2",
@@ -186,18 +204,16 @@ const EventReducer: Reducer<EventState, Action> = produce(
       case Transitions.CLICK_CONTACT_US:
         draft.touchCountMenu3 += 1;
         break;
-      case Transitions.CLICK_NO_MOLE_FILTER:
-        draft.touchCountNoMole += 1;
+      case Transitions.CLICK_NO_HAT:
+        draft.touchCountNoHat += 1;
         break;
-      case Transitions.CLICK_MOLE_1:
-        draft.touchCountMole1 += 1;
+      case Transitions.CLICK_HAT_1:
+        draft.touchCountHat1 += 1;
         break;
-      case Transitions.CLICK_MOLE_2:
-        draft.touchCountMole2 += 1;
+      case Transitions.CLICK_HAT_2:
+        draft.touchCountHat2 += 1;
         break;
-      case Transitions.CLICK_MOLE_3:
-        draft.touchCountMole3 += 1;
-        break;
+
       case Transitions.CLICK_NO_OLD_FILTER:
         draft.touchCountNoFilter += 1;
         break;
@@ -250,31 +266,43 @@ export const selectors = {
   survey: (state: ApplicationState) => {
     const { events } = state;
     return {
-      noneTimer: events.noOldTime,
-      filter1_Timer: events.old1Time,
-      filter2_Timer: events.old2Time,
-      filter3_Timer: events.old3Time,
-      filter1Hat_Timer: events.mole1Time,
-      filter2Hat_Timer: events.mole2Time,
-      filter3Mole_Timer: events.mole3Time,
-      messagePage1Timer: events.messagePage1Timer,
-      messagePage2Timer: events.messagePage2Timer,
-      messagePage3Timer: events.messagePage3Timer,
-      menu1_Timer: events.whatIsARTimer,
-      menu2_Timer: events.consentFormTimer,
-      menu3_Timer: events.contactUsTimer,
+      
+      numberOfClicks: events.numberOfClicks,
+      surveyId: events.surveyId,
+
+      menu1_Timer: events.menu1_Timer, //whatis AR
+      menu2_Timer: events.menu2_Timer, // cosnent form
+      menu3_Timer: events.menu3_Timer, // contact us timer
+      
+      messagePage1Timer: events.messagePage1_Timer,
+      messagePage2Timer: events.messagePage2_Timer,
+      messagePage3Timer: events.messagePage3_Timer,
+      
+      noneTimer: events.noneTimer,
+      filter1_Timer: events.filter1_Timer,
+      filter2_Timer: events.filter2_Timer,
+      filter3_Timer: events.filter3_Timer,
+
+      filterNoHat_Timer: events.filterNoHat_Timer,
+      filter1Hat_Timer: events.filterHat1_Timer,
+      filter2Hat_Timer: events.filterHat2_Timer,
+      
       touchCountMenu1: events.touchCountMenu1,
       touchCountMenu2: events.touchCountMenu2,
       touchCountMenu3: events.touchCountMenu3,
+      
+      timeSpent: events.timeSpent,
+      eventName: events.eventName,
+
       touchCount: events.touchCount,
+      touchCountNoFilter: events.touchCountNoFilter,
       touchCountFilter1: events.touchCountFilter1,
       touchCountFilter2: events.touchCountFilter2,
       touchCountFilter3: events.touchCountFilter3,
-      touchCountNoFilter: events.touchCountNoFilter,
-      touchCountMole1: events.touchCountMole1,
-      touchCountMole2: events.touchCountMole2,
-      touchCountMole3: events.touchCountMole3,
-      touchCountNoMole: events.touchCountNoMole,
+      
+      touchCountNoHat: events.touchCountNoHat,
+      touchCountHat1: events.touchCountHat1,
+      touchCountHat2: events.touchCountHat2
     };
   },
   isMenuOpen: (state: ApplicationState) => {
@@ -287,31 +315,39 @@ export const selectors = {
 };
 
 interface SurveySubmission {
+  numberOfClicks: number;
+  timeSpent: number;
+  
+  menu1_Timer: number;
+  menu2_Timer: number;
+  menu3_Timer: number;
+
+  messagePage1_Timer: number;
+  messagePage2_Timer: number;
+  messagePage3_Timer: number;
+  
   noneTimer: number;
   filter1_Timer: number;
   filter2_Timer: number;
   filter3_Timer: number;
+ 
+  filterNoHat_Timer: number;
   filter1Hat_Timer: number;
   filter2Hat_Timer: number;
-  filter3Mole_Timer: number;
-  messagePage1Timer: number;
-  messagePage2Timer: number;
-  messagePage3Timer: number;
-  menu1_Timer: number;
-  menu2_Timer: number;
-  menu3_Timer: number;
+
   touchCountMenu1: number;
   touchCountMenu2: number;
   touchCountMenu3: number;
+  
   touchCount: number;
+  touchCountNoFilter: number;
   touchCountFilter1: number;
   touchCountFilter2: number;
   touchCountFilter3: number;
-  touchCountNoFilter: number;
-  touchCountMole1: number;
-  touchCountMole2: number;
-  touchCountMole3: number;
-  touchCountNoMole: number;
+
+  touchCountNoHat: number;
+  touchCountHat1: number;
+  touchCountHat2: number;
 }
 
 export const SubmitSurvey = (

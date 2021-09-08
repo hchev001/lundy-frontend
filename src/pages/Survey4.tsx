@@ -63,10 +63,10 @@ export const Survey4: React.FC = () => {
    */
   const handleFilterClick = (filterState: number): void => {
     if (filterState === 0) {
-      dispatch(actions.clickLink(Transitions.CLICK_NO_MOLE_FILTER));
+      dispatch(actions.clickLink(Transitions.CLICK_NO_HAT));
       setGifState(0);
     } else if (filterState === 1) {
-      dispatch(actions.clickLink(Transitions.CLICK_MOLE_1));
+      dispatch(actions.clickLink(Transitions.CLICK_HAT_1));
       setGifState(1);
       setState({ ...state, filter1: true });
 
@@ -75,7 +75,7 @@ export const Survey4: React.FC = () => {
         setStatesSeen([...statesSeen, 1]);
       }
     } else if (filterState === 2) {
-      dispatch(actions.clickLink(Transitions.CLICK_MOLE_2));
+      dispatch(actions.clickLink(Transitions.CLICK_HAT_2));
       setGifState(2);
       setState({ ...state, filter2: true });
 
