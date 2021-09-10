@@ -8,12 +8,19 @@ import { actions, PageNames } from "../store/modules/Events";
 export const Survey5: React.FC = () => {
   const history = useHistory();
   const dispatch = useDispatch();
-  // useEffect(() => {
-  //   dispatch(actions.visitPage(new Date()));
-  //   return () => {
-  //     dispatch(actions.leavePage(PageNames.MESSAGE_3_PAGE, new Date()));
-  //   };
-  // }, []);
+  useEffect(() => {
+    dispatch(actions.visitPage(new Date()));
+    return () => {
+      dispatch(actions.leavePage(PageNames.MESSAGE_5_PAGE, new Date()));
+    };
+  }, []);
+  const handleNext = () => {
+    //track the click
+    dispatch(actions.click());
+
+    // go to next page
+    history.push("/survey/6");
+  }
   return (
     <FullLayout>
       <div className="container p-8">
@@ -26,7 +33,7 @@ export const Survey5: React.FC = () => {
           playing and working outdoors.
         </div>
         <div className="md:mt-36">
-          <Button onClick={() => history.push("/survey/6")} text="Next" />
+          <Button onClick={() => handleNext()} text="Next" />
         </div>
       </div>
     </FullLayout>

@@ -141,6 +141,9 @@ export const Disclaimer = (props: BaseProps) => {
           <Button
             onClick={() => {
               dispatch(actions.clickLink(Transitions.INCREMENT_TOUCH_COUNT));
+
+              // increment numberOfClicks
+              dispatch(actions.click());
               history.push("/survey/1");
             }}
             validationMessage="Click to continue"

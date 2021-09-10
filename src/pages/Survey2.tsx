@@ -21,6 +21,7 @@ import {
 } from "../store/modules/Events";
 
 const GifLoader = styled.img`
+  display: ${props => props.hidden ? 'none': 'block'};
   height: 100%;
   width: 240px;
 `;
@@ -60,19 +61,28 @@ export const Survey2: React.FC = () => {
     dispatch(actions.visitPage(new Date()));
     return () => {
       if (gifState === 0) {
+        dispatch(actions.click());
         dispatch(actions.leavePage(PageNames.NO_OLD_FILTER, new Date()));
       } else if (gifState === 1) {
+        dispatch(actions.click());
         dispatch(actions.leavePage(PageNames.OLD_1_FILTER, new Date()));
       } else if (gifState === 2) {
+        dispatch(actions.click())
         dispatch(actions.leavePage(PageNames.OLD_2_FILTER, new Date()));
       } else if (gifState === 3) {
+        dispatch(actions.click());
         dispatch(actions.leavePage(PageNames.OLD_3_FILTER, new Date()));
       }
     };
   }, [gifState, dispatch]);
 
   const handleNext = () => {
+    // track the click
+    dispatch(actions.click())
+
+    // if seen more than one filter
     if (statesSeen.length > 1) {
+      // go to the next survey
       history.push("/survey/3");
     }
   };
@@ -82,9 +92,11 @@ export const Survey2: React.FC = () => {
    */
   const handleFilterClick = (filterState: number): void => {
     if (filterState === 0) {
+      dispatch(actions.click())
       dispatch(actions.clickLink(Transitions.CLICK_NO_OLD_FILTER));
       setGifState(0);
     } else if (filterState === 1) {
+      dispatch(actions.click())
       dispatch(actions.clickLink(Transitions.CLICK_FILTER_1));
       setGifState(1);
       setState({ ...state, filter1: true });
@@ -94,6 +106,7 @@ export const Survey2: React.FC = () => {
         setStatesSeen([...statesSeen, 1]);
       }
     } else if (filterState === 2) {
+      dispatch(actions.click())
       dispatch(actions.clickLink(Transitions.CLICK_FILTER_2));
       setGifState(2);
       setState({ ...state, filter2: true });
@@ -103,6 +116,7 @@ export const Survey2: React.FC = () => {
         setStatesSeen([...statesSeen, 2]);
       }
     } else if (filterState === 3) {
+      dispatch(actions.click())
       dispatch(actions.clickLink(Transitions.CLICK_FILTER_3));
       setGifState(3);
       setState({ ...state, filter3: true });
@@ -113,6 +127,13 @@ export const Survey2: React.FC = () => {
       }
     }
   };
+
+  useEffect(() => {
+    dispatch(actions.visitPage(new Date()));
+    return () => {
+      dispatch(actions.leavePage(PageNames.MESSAGE_2_PAGE, new Date()));
+    };
+  }, []);
 
   return (
     <FullLayout>

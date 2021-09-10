@@ -20,16 +20,24 @@ const BgAsset = styled.div`
   }
 `;
 
-export const Survey13: React.FC = () => {
+export const Survey14: React.FC = () => {
   const history = useHistory();
   const dispatch = useDispatch();
 
-  // useEffect(() => {
-  //   dispatch(actions.visitPage(new Date()));
-  //   return () => {
-  //     dispatch(actions.leavePage(PageNames.MESSAGE_1_PAGE, new Date()));
-  //   };
-  // }, []);
+  useEffect(() => {
+    dispatch(actions.visitPage(new Date()));
+    return () => {
+      dispatch(actions.leavePage(PageNames.MESSAGE_1_4_PAGE, new Date()));
+    };
+  }, []);
+
+  const handleNext = () => {
+    //track the click
+    dispatch(actions.click());
+
+    // go to next page
+    history.push("/survey/2");
+  }
   return (
     <FullLayout>
       <BgAsset className='p-8 font-sans text-brown-500 text-xl'>
@@ -39,7 +47,7 @@ export const Survey13: React.FC = () => {
 
         
       <div className="md:mt-36">
-        <Button onClick={() => history.push("/survey/2")} text='Next'/>
+        <Button onClick={() => handleNext()} text='Next'/>
       </div>
       </BgAsset>
     </FullLayout>

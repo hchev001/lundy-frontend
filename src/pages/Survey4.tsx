@@ -31,6 +31,13 @@ export const Survey4: React.FC = () => {
     filter3: false,
   });
 
+  useEffect(() => {
+    dispatch(actions.visitPage(new Date()));
+    return () => {
+      dispatch(actions.leavePage(PageNames.MESSAGE_4_PAGE, new Date()));
+    };
+  }, []);
+
   /**
    * Use [0, 1, 2] to denote when to render a gif and also
    * track the time it was seen
@@ -41,18 +48,18 @@ export const Survey4: React.FC = () => {
     dispatch(actions.visitPage(new Date()));
     return () => {
       if (gifState === 0) {
-        dispatch(actions.leavePage(PageNames.NO_MOLE_FILTER, new Date()));
+        dispatch(actions.leavePage(PageNames.NO_HAT_FILTER, new Date()));
       } else if (gifState === 1) {
-        dispatch(actions.leavePage(PageNames.MOLE_1_FILTER, new Date()));
+        dispatch(actions.leavePage(PageNames.HAT_1_FILTER, new Date()));
       } else if (gifState === 2) {
-        dispatch(actions.leavePage(PageNames.MOLE_2_FILTER, new Date()));
-      } else if (gifState === 3) {
-        dispatch(actions.leavePage(PageNames.MOLE_3_FILTER, new Date()));
+        dispatch(actions.leavePage(PageNames.HAT_2_FILTER, new Date()));
       }
     };
   }, [gifState]);
 
   const handleNext = () => {
+    // track the button click
+    dispatch(actions.click());
     if (statesSeen.length > 1) {
       history.push("/survey/5");
     }

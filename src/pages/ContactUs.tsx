@@ -16,6 +16,9 @@ export const ContactUs = () => {
     };
   });
   const handleGoBack = () => {
+    // track the button click
+    dispatch(actions.click());
+    // go back a page
     history.goBack();
   };
   return (

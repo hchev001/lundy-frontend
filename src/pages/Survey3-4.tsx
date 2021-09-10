@@ -9,12 +9,20 @@ import hat_img from "../common/assets/glasses_hat.png";
 export const Survey34: React.FC = () => {
   const history = useHistory();
   const dispatch = useDispatch();
-  // useEffect(() => {
-  //   dispatch(actions.visitPage(new Date()));
-  //   return () => {
-  //     dispatch(actions.leavePage(PageNames.MESSAGE_2_PAGE, new Date()));
-  //   };
-  // }, []);
+  useEffect(() => {
+    dispatch(actions.visitPage(new Date()));
+    return () => {
+      dispatch(actions.leavePage(PageNames.MESSAGE_3_4_PAGE, new Date()));
+    };
+  }, []);
+
+  const handleNext = () => {
+    //track the click
+    dispatch(actions.click());
+
+    // go to next page
+    history.push("/survey/4");
+  }
   return (
     <FullLayout>
       <div className="p-8 font-sans text-brown-500 text-xl">
@@ -44,7 +52,7 @@ export const Survey34: React.FC = () => {
         </div>
 
         <div className="md:mt-36">
-          <Button onClick={() => history.push("/survey/4")} text="Next" />
+          <Button onClick={() => handleNext()} text="Next" />
         </div>
       </div>
     </FullLayout>

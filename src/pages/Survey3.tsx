@@ -23,12 +23,20 @@ const BgAsset = styled.div`
 export const Survey31: React.FC = () => {
   const history = useHistory();
   const dispatch = useDispatch();
-  // useEffect(() => {
-  //   dispatch(actions.visitPage(new Date()));
-  //   return () => {
-  //     dispatch(actions.leavePage(PageNames.MESSAGE_2_PAGE, new Date()));
-  //   };
-  // }, []);
+  useEffect(() => {
+    dispatch(actions.visitPage(new Date()));
+    return () => {
+      dispatch(actions.leavePage(PageNames.MESSAGE_3_PAGE, new Date()));
+    };
+  }, []);
+
+  const handleNext = () => {
+    //track the click
+    dispatch(actions.click());
+
+    // go to next page
+    history.push("/survey/3-2");
+  }
   return (
     <FullLayout>
       <BgAsset className='p-8 font-sans text-brown-500 text-xl'>
@@ -40,7 +48,7 @@ export const Survey31: React.FC = () => {
         </ul>
       </div>
       <div className="md:mt-36">
-        <Button onClick={() => history.push("/survey/3-2")} text="Next"/>
+        <Button onClick={() => handleNext()} text="Next"/>
       </div>
       </BgAsset>
       

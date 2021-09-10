@@ -17,6 +17,8 @@ export const WhatIsAR = () => {
     };
   });
   const handleGoBack = () => {
+    // track the click
+    dispatch(actions.click());
     history.goBack();
   };
   return (

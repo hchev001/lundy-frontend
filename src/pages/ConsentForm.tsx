@@ -42,6 +42,7 @@ export const ConsentForm = (props: BaseProps) => {
   }, []);
 
   const handleGoBack = () => {
+    dispatch(actions.click())
     history.goBack();
   };
 

@@ -13,6 +13,7 @@ import { Survey13 } from "../pages/Survey1-3";
 import { Survey32 } from "../pages/Survey3-2";
 import { Survey33 } from "../pages/Survey3-3";
 import { Survey34 } from "../pages/Survey3-4";
+import { Survey14 } from "../pages/Survey1-4";
 
 
 export const IndexRoutes = [
@@ -22,6 +23,7 @@ export const IndexRoutes = [
   { path: "/survey/1", component: Survey1 },
   { path: "/survey/1-2", component: Survey12},
   { path: "/survey/1-3", component: Survey13},
+  { path: "/survey/1-4", component: Survey14},
   { path: "/survey/2", component: Survey2 },
   { path: "/survey/3", component: Survey31 },
   { path: "/survey/3-2", component: Survey32 },

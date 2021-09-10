@@ -9,6 +9,10 @@ export const RandomCode: React.FC = () => {
   const [surveyId, setSurveyId] = useState("placeholder_code");
   const surveyStarted = useSelector(selectors.surveyStarted);
 
+  useEffect(() => {
+    console.log(survey);
+  }, [])
+
   // useEffect(() => {
   //   SubmitSurvey(survey, surveyStarted)
   //     .then((r) => {
@@ -16,6 +20,8 @@ export const RandomCode: React.FC = () => {
   //     })
   //     .catch((e) => console.log(e));
   // }, []);
+
+
   return (
     <FullLayout>
       <div className="container p-8">

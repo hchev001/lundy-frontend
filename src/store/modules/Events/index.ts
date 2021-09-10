@@ -7,28 +7,28 @@ import { ApplicationState } from "../..";
 export interface EventState {
   numberOfClicks: number;
   surveyId: string | undefined;
-  
+
   menu1_Timer: number;
   menu2_Timer: number;
   menu3_Timer: number;
-  
+
   messagePage1_Timer: number;
   messagePage2_Timer: number;
   messagePage3_Timer: number;
-  
+
   noneTimer: number;
   filter1_Timer: number;
   filter2_Timer: number;
   filter3_Timer: number;
-  
+
   filterNoHat_Timer: number;
   filterHat1_Timer: 0;
-  filterHat2_Timer:0;
-  
+  filterHat2_Timer: 0;
+
   touchCountMenu1: number;
   touchCountMenu2: number;
   touchCountMenu3: number;
-  
+
   timeSpent: number;
   eventName: string;
 
@@ -41,8 +41,6 @@ export interface EventState {
   touchCountNoHat: number;
   touchCountHat1: number;
   touchCountHat2: number;
-  
-
 
   eventDuration: number;
   startTime: number;
@@ -54,38 +52,38 @@ export interface EventState {
 const initialState: EventState = {
   numberOfClicks: 0,
   timeSpent: 0,
-  
+
   menu1_Timer: 0,
   menu2_Timer: 0,
   menu3_Timer: 0,
- 
+
   messagePage1_Timer: 0,
   messagePage2_Timer: 0,
   messagePage3_Timer: 0,
-  
+
   noneTimer: 0, //noneTimer
   filter1_Timer: 0, //filter1_Timer
   filter2_Timer: 0, //filter2_Timer
   filter3_Timer: 0, //filter3_Timer
-  
-  filterNoHat_Timer: 0, 
+
+  filterNoHat_Timer: 0,
   filterHat1_Timer: 0,
-  filterHat2_Timer: 0, 
-  
+  filterHat2_Timer: 0,
+
   touchCountMenu1: 0, //touchCountMenu1
   touchCountMenu2: 0, //touchCountMenu2
   touchCountMenu3: 0, //touchCountMenu3
-  
+
   touchCount: 0, //touchCount total?????
   touchCountNoFilter: 0, //touchCountFilter1
   touchCountFilter1: 0, //touchCountFilter2
   touchCountFilter2: 0, //touchCountFilter3
   touchCountFilter3: 0, //touchCountNoFilter
-  
+
   touchCountNoHat: 0, //touchCountMole1
   touchCountHat1: 0, //touchCountMole2
   touchCountHat2: 0, //touchCountMole3
-  
+
   eventName: "",
   eventDuration: -1,
   startTime: 0,
@@ -105,8 +103,8 @@ export enum Transitions {
   VIEW_MESSAGE_13_PAGE = "view_message_1-3_page",
   VIEW_MESSAGE_14_PAGE = "view_message_1-4_page",
 
-  VIEW_MESSAGE_2_PAGE = "view_message_2_page", // first set of filters 
-  
+  VIEW_MESSAGE_2_PAGE = "view_message_2_page", // first set of filters
+
   VIEW_MESSAGE_3_PAGE = "view_message_3_page",
   VIEW_MESSAGE_32_PAGE = "view_message_3-2_page",
   VIEW_MESSAGE_33_PAGE = "view_message_3-3_page",
@@ -117,11 +115,11 @@ export enum Transitions {
   VIEW_MESSAGE_5_PAGE = "view_message_5_page", // last page before code page
 
   VIEW_CONSENT_FORM = "view_consent_form",
-  
+
   CLICK_CONSENT_FORM = "clickConsentForm",
   CLICK_WHAT_IS_AR = "clickWhatIsAR",
   CLICK_CONTACT_US = "clickContactUs",
-  
+
   CLICK_NO_HAT = "touchCountNoHat",
   CLICK_HAT_1 = "touchCountHat1",
   CLICK_HAT_2 = "touchCountHat",
@@ -132,6 +130,8 @@ export enum Transitions {
   CLICK_FILTER_3 = "touchCountFilter3",
   INCREMENT_TOUCH_COUNT = "touchCount",
 
+  INCREMENT_TOTAL_CLICKS = "incrementTotalClicks",
+
   OPEN_MENU = "openMenu",
   CLOSE_MENU = "closeMenu",
   TOGGLE_MENU = "toggleMenu",
@@ -139,16 +139,23 @@ export enum Transitions {
 
 export enum PageNames {
   MESSAGE_1_PAGE = "messagePage1Timer",
+  MESSAGE_1_2_PAGE = "messagePage1-2Timer",
+  MESSAGE_1_3_PAGE = "messagePage1-3Timer",
+  MESSAGE_1_4_PAGE = "messagePage1-4Timer",
   MESSAGE_2_PAGE = "messagePage2Timer",
   MESSAGE_3_PAGE = "messagePage3Timer",
+  MESSAGE_3_2_PAGE = "messagePage3-2Timer",
+  MESSAGE_3_3_PAGE = "messagePage3-3Timer",
+  MESSAGE_3_4_PAGE = "messagePage3-4Timer",
+  MESSAGE_4_PAGE = "messagePage4Timer",
+  MESSAGE_5_PAGE = "messagePage5Timer",
   OLD_1_FILTER = "old1Time",
   OLD_2_FILTER = "old2Time",
   OLD_3_FILTER = "old3Time",
   NO_OLD_FILTER = "noOldTime",
-  NO_MOLE_FILTER = "noMoleTime",
-  MOLE_1_FILTER = "mole1Time",
-  MOLE_2_FILTER = "mole2Time",
-  MOLE_3_FILTER = "mole3Time",
+  NO_HAT_FILTER = "noHatFilter",
+  HAT_1_FILTER = "hat1Filter",
+  HAT_2_FILTER = "hat2Filter",
   CONSENT_FORM = "consentFormTimer",
   AR_PAGE = "whatIsARTimer",
   CONTACT_US_PAGE = "contactUsTimer",
@@ -164,6 +171,9 @@ type Action = {
 const EventReducer: Reducer<EventState, Action> = produce(
   (draft: Draft<EventState>, action: Action) => {
     switch (action.type) {
+      case Transitions.INCREMENT_TOTAL_CLICKS:
+        draft.numberOfClicks += 1;
+        break;
       case Transitions.TOGGLE_MENU:
         draft.menuOpen = !draft.menuOpen;
         break;
@@ -251,6 +261,9 @@ export const actions = {
   clickLink: (linkName: Transitions): Action => ({
     type: linkName,
   }),
+  click: (): Action => ({
+    type: Transitions.INCREMENT_TOTAL_CLICKS,
+  }),
   toggleMenu: (): Action => ({
     type: Transitions.TOGGLE_MENU,
   }),
@@ -266,18 +279,17 @@ export const selectors = {
   survey: (state: ApplicationState) => {
     const { events } = state;
     return {
-      
       numberOfClicks: events.numberOfClicks,
       surveyId: events.surveyId,
 
       menu1_Timer: events.menu1_Timer, //whatis AR
       menu2_Timer: events.menu2_Timer, // cosnent form
       menu3_Timer: events.menu3_Timer, // contact us timer
-      
+
       messagePage1Timer: events.messagePage1_Timer,
       messagePage2Timer: events.messagePage2_Timer,
       messagePage3Timer: events.messagePage3_Timer,
-      
+
       noneTimer: events.noneTimer,
       filter1_Timer: events.filter1_Timer,
       filter2_Timer: events.filter2_Timer,
@@ -286,11 +298,11 @@ export const selectors = {
       filterNoHat_Timer: events.filterNoHat_Timer,
       filter1Hat_Timer: events.filterHat1_Timer,
       filter2Hat_Timer: events.filterHat2_Timer,
-      
+
       touchCountMenu1: events.touchCountMenu1,
       touchCountMenu2: events.touchCountMenu2,
       touchCountMenu3: events.touchCountMenu3,
-      
+
       timeSpent: events.timeSpent,
       eventName: events.eventName,
 
@@ -299,10 +311,10 @@ export const selectors = {
       touchCountFilter1: events.touchCountFilter1,
       touchCountFilter2: events.touchCountFilter2,
       touchCountFilter3: events.touchCountFilter3,
-      
+
       touchCountNoHat: events.touchCountNoHat,
       touchCountHat1: events.touchCountHat1,
-      touchCountHat2: events.touchCountHat2
+      touchCountHat2: events.touchCountHat2,
     };
   },
   isMenuOpen: (state: ApplicationState) => {
@@ -317,7 +329,7 @@ export const selectors = {
 interface SurveySubmission {
   numberOfClicks: number;
   timeSpent: number;
-  
+
   menu1_Timer: number;
   menu2_Timer: number;
   menu3_Timer: number;
@@ -325,12 +337,12 @@ interface SurveySubmission {
   messagePage1_Timer: number;
   messagePage2_Timer: number;
   messagePage3_Timer: number;
-  
+
   noneTimer: number;
   filter1_Timer: number;
   filter2_Timer: number;
   filter3_Timer: number;
- 
+
   filterNoHat_Timer: number;
   filter1Hat_Timer: number;
   filter2Hat_Timer: number;
@@ -338,7 +350,7 @@ interface SurveySubmission {
   touchCountMenu1: number;
   touchCountMenu2: number;
   touchCountMenu3: number;
-  
+
   touchCount: number;
   touchCountNoFilter: number;
   touchCountFilter1: number;
