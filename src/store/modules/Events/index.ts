@@ -349,8 +349,8 @@ export const selectors = {
       filter3_Timer: events.filter3_Timer,
 
       filterNoHat_Timer: events.filterNoHat_Timer,
-      filter1Hat_Timer: events.filterHat1_Timer,
-      filter2Hat_Timer: events.filterHat2_Timer,
+      filterHat1_Timer: events.filterHat1_Timer,
+      filterHat2_Timer: events.filterHat2_Timer,
 
       touchCountMenu1: events.touchCountMenu1,
       touchCountMenu2: events.touchCountMenu2,
