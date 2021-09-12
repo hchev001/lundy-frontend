@@ -8,26 +8,25 @@ import { actions, PageNames } from "../store/modules/Events";
 export const RandomCode: React.FC = () => {
   const survey = useSelector(selectors.survey);
   const [surveyId, setSurveyId] = useState("");
+  const [tee, setTee] = useState('')
   const surveyStarted = useSelector(selectors.surveyStarted);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(actions.click())
-    console.log('on survey code page');
-  }, [])
-
-  useEffect(() => {
-    SubmitSurvey(survey, surveyStarted)
-      .then((r) => {
-        setSurveyId(r.data.data.surveyId);
-      })
-      .catch((e) => console.log(e));
+    dispatch(actions.click());
+    setTee("slo");
+    setTimeout( () => SubmitSurvey(survey, surveyStarted)
+    .then((r) => {
+      setSurveyId(r.data.data.surveyId);
+    })
+    .catch((e) => console.log(e)), 500);
+    
   }, []);
 
 
   return (
     <FullLayout>
-      <div className="container p-8">
+      <div className="container p-8" id={tee}>
       <div className="w-full text-center text-3xl">
         Thank you!
       </div>

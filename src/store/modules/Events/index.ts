@@ -332,7 +332,7 @@ export const selectors = {
   survey: (state: ApplicationState) => {
     const { events } = state;
     return {
-      numberOfClicks: events.numberOfClicks,
+      total_clicks: events.numberOfClicks,
       surveyId: events.surveyId,
 
       menu1_Timer: events.menu1_Timer, //whatis AR
@@ -387,41 +387,7 @@ export const selectors = {
   },
 };
 
-interface SurveySubmission {
-  numberOfClicks: number;
-  timeSpent: number;
 
-  menu1_Timer: number;
-  menu2_Timer: number;
-  menu3_Timer: number;
-
-  messagePage1_Timer: number;
-  messagePage2_Timer: number;
-  messagePage3_Timer: number;
-
-  noneTimer: number;
-  filter1_Timer: number;
-  filter2_Timer: number;
-  filter3_Timer: number;
-
-  filterNoHat_Timer: number;
-  filter1Hat_Timer: number;
-  filter2Hat_Timer: number;
-
-  touchCountMenu1: number;
-  touchCountMenu2: number;
-  touchCountMenu3: number;
-
-  touchCount: number;
-  touchCountNoFilter: number;
-  touchCountFilter1: number;
-  touchCountFilter2: number;
-  touchCountFilter3: number;
-
-  touchCountNoHat: number;
-  touchCountHat1: number;
-  touchCountHat2: number;
-}
 
 export const SubmitSurvey = (
   survey: any,

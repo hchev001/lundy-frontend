@@ -12,7 +12,7 @@ const CombinedReducer = () => combineReducers({ events: EventReducer });
 const configureStoreDev = (): Store<ApplicationState> => {
   const store = createStore(
     CombinedReducer(),
-    composeWithDevTools(applyMiddleware(thunk, logger))
+    composeWithDevTools(applyMiddleware(thunk))
   );
 
   return store;
