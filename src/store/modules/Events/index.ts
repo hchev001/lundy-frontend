@@ -375,7 +375,7 @@ export const selectors = {
       messagePage4_Timer: events.messagePage4_Timer,
       messagePage5_Timer: events.messagePage5_Timer,
 
-      total_time: events.menu1_Timer + events.menu2_Timer + events.menu3_Timer + events.messagePage1_Timer + events.messagePage2_Timer + events.messagePage3_Timer + events.noneTimer + events.filter1_Timer + events.filter2_Timer + events.filter3_Timer + events.filterNoHat_Timer + events.filterHat1_Timer + events.filterHat2_Timer + events.messagePage1_2_Timer + events.messagePage1_4_Timer + events.messagePage1_3_Timer + events.messagePage3_2_Timer + events.messagePage3_3_Timer + events.messagePage3_4_Timer + events.messagePage4_Timer + events.messagePage5_Timer,
+      total_time: events.menu1_Timer + events.menu2_Timer + events.menu3_Timer + events.messagePage1_Timer + events.messagePage2_Timer + events.messagePage3_Timer + events.messagePage1_2_Timer + events.messagePage1_4_Timer + events.messagePage1_3_Timer + events.messagePage3_2_Timer + events.messagePage3_3_Timer + events.messagePage3_4_Timer + events.messagePage4_Timer + events.messagePage5_Timer,
     };
   },
   isMenuOpen: (state: ApplicationState) => {
