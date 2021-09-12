@@ -339,9 +339,9 @@ export const selectors = {
       menu2_Timer: events.menu2_Timer, // cosnent form
       menu3_Timer: events.menu3_Timer, // contact us timer
 
-      messagePage1Timer: events.messagePage1_Timer,
-      messagePage2Timer: events.messagePage2_Timer,
-      messagePage3Timer: events.messagePage3_Timer,
+      messagePage1_Timer: events.messagePage1_Timer,
+      messagePage2_Timer: events.messagePage2_Timer,
+      messagePage3_Timer: events.messagePage3_Timer,
 
       noneTimer: events.noneTimer,
       filter1_Timer: events.filter1_Timer,
