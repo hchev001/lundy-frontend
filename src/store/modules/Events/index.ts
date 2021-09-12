@@ -47,6 +47,15 @@ export interface EventState {
   endTime: number;
   menuOpen: boolean;
   surveyStarted: boolean;
+
+  messagePage1_2_Timer: number;
+  messagePage1_3_Timer: number;
+  messagePage1_4_Timer: number;
+  messagePage3_2_Timer: number;
+  messagePage3_3_Timer: number;
+  messagePage3_4_Timer: number;
+  messagePage4_Timer: number;
+  messagePage5_Timer: number;
 }
 
 const initialState: EventState = {
@@ -83,6 +92,15 @@ const initialState: EventState = {
   touchCountNoHat: 0, //touchCountMole1
   touchCountHat1: 0, //touchCountMole2
   touchCountHat2: 0, //touchCountMole3
+
+  messagePage1_2_Timer: 0,
+  messagePage1_3_Timer: 0,
+  messagePage1_4_Timer: 0,
+  messagePage3_2_Timer: 0,
+  messagePage3_3_Timer: 0,
+  messagePage3_4_Timer: 0,
+  messagePage4_Timer: 0,
+  messagePage5_Timer: 0,
 
   eventName: "",
   eventDuration: -1,
@@ -138,27 +156,27 @@ export enum Transitions {
 }
 
 export enum PageNames {
-  MESSAGE_1_PAGE = "messagePage1Timer",
-  MESSAGE_1_2_PAGE = "messagePage1-2Timer",
-  MESSAGE_1_3_PAGE = "messagePage1-3Timer",
-  MESSAGE_1_4_PAGE = "messagePage1-4Timer",
-  MESSAGE_2_PAGE = "messagePage2Timer",
-  MESSAGE_3_PAGE = "messagePage3Timer",
-  MESSAGE_3_2_PAGE = "messagePage3-2Timer",
-  MESSAGE_3_3_PAGE = "messagePage3-3Timer",
-  MESSAGE_3_4_PAGE = "messagePage3-4Timer",
-  MESSAGE_4_PAGE = "messagePage4Timer",
-  MESSAGE_5_PAGE = "messagePage5Timer",
-  OLD_1_FILTER = "old1Time",
-  OLD_2_FILTER = "old2Time",
-  OLD_3_FILTER = "old3Time",
-  NO_OLD_FILTER = "noOldTime",
-  NO_HAT_FILTER = "noHatFilter",
-  HAT_1_FILTER = "hat1Filter",
-  HAT_2_FILTER = "hat2Filter",
-  CONSENT_FORM = "consentFormTimer",
-  AR_PAGE = "whatIsARTimer",
-  CONTACT_US_PAGE = "contactUsTimer",
+  MESSAGE_1_PAGE = "messagePage1_Timer",
+  MESSAGE_1_2_PAGE = "messagePage1_2_Timer",
+  MESSAGE_1_3_PAGE = "messagePage1_3_Timer",
+  MESSAGE_1_4_PAGE = "messagePage1_4_Timer",
+  MESSAGE_2_PAGE = "messagePage2_Timer",
+  MESSAGE_3_PAGE = "messagePage3_Timer",
+  MESSAGE_3_2_PAGE = "messagePage3_2_Timer",
+  MESSAGE_3_3_PAGE = "messagePage3_3_Timer",
+  MESSAGE_3_4_PAGE = "messagePage3_4_Timer",
+  MESSAGE_4_PAGE = "messagePage4_Timer",
+  MESSAGE_5_PAGE = "messagePage5_Timer",
+  OLD_1_FILTER = "filter1_Timer",
+  OLD_2_FILTER = "filter2_Timer",
+  OLD_3_FILTER = "filter3_Timer",
+  NO_OLD_FILTER = "noneTimer",
+  NO_HAT_FILTER = "filterNoHat_Timer",
+  HAT_1_FILTER = "filterHat1_Timer",
+  HAT_2_FILTER = "filterHat2_Timer",
+  CONSENT_FORM = "menu2_Timer",
+  AR_PAGE = "menu1_Timer",
+  CONTACT_US_PAGE = "menu3_Timer",
 }
 
 type Action = {
@@ -187,10 +205,12 @@ const EventReducer: Reducer<EventState, Action> = produce(
         draft.surveyStarted = true;
         break;
       case Transitions.VISIT_PAGE:
+        console.log('VISIT PAGE ', action.time.getTime())
         draft.startTime = action?.time?.getTime() || -1;
 
         break;
       case Transitions.LEAVE_PAGE:
+
         //@ts-ignore
         draft[action.pageTimerIndex] +=
           //@ts-ignore
@@ -203,6 +223,14 @@ const EventReducer: Reducer<EventState, Action> = produce(
       case Transitions.VIEW_MESSAGE_1_PAGE:
       case Transitions.VIEW_MESSAGE_2_PAGE:
       case Transitions.VIEW_MESSAGE_3_PAGE:
+      case Transitions.VIEW_MESSAGE_12_PAGE:
+      case Transitions.VIEW_MESSAGE_13_PAGE:
+      case Transitions.VIEW_MESSAGE_14_PAGE:
+      case Transitions.VIEW_MESSAGE_32_PAGE:
+      case Transitions.VIEW_MESSAGE_33_PAGE:
+      case Transitions.VIEW_MESSAGE_34_PAGE:
+      case Transitions.VIEW_MESSAGE_4_PAGE:
+      case Transitions.VIEW_MESSAGE_5_PAGE:
         draft.startTime = action?.time?.getTime() || -1;
         break;
       case Transitions.CLICK_CONSENT_FORM:
@@ -239,6 +267,23 @@ const EventReducer: Reducer<EventState, Action> = produce(
       case Transitions.INCREMENT_TOUCH_COUNT:
         draft.touchCount += 1;
         break;
+      case "SET_AGE_FILTER_TIMES":
+        //@ts-ignore
+        draft.noneTimer = action?.times?.filter_0 / 1000;
+        //@ts-ignore
+        draft.filter1_Timer = action?.times?.filter_1 / 1000;
+        //@ts-ignore
+        draft.filter2_Timer = action?.times?.filter_2 / 1000;
+        //@ts-ignore
+        draft.filter3_Timer = action?.times?.filter_3 / 1000;
+        break;
+      case "SET_HAT_FILTER_TIMES":
+        //@ts-ignore
+        draft.filterNoHat_Timer = action?.times?.filter_0 / 1000;
+        //@ts-ignore
+        draft.filterHat1_Timer = action?.times?.filter_1 / 1000;
+        //@ts-ignore
+        draft.filterHat2_Timer = action?.times?.filter_2 / 1000;
     }
   },
   initialState
@@ -257,6 +302,14 @@ export const actions = {
   setID: (id: string): Action => ({
     type: "START_SURVEY",
     surveyId: id,
+  }),
+  setAgeFilterTimes: (times:any): any => ({
+    type: "SET_AGE_FILTER_TIMES",
+    times: times
+  }),
+  setHatFilterTimes: (times:any):any => ({
+    type: "SET_HAT_FILTER_TIMES",
+    times: times
   }),
   clickLink: (linkName: Transitions): Action => ({
     type: linkName,
@@ -303,10 +356,6 @@ export const selectors = {
       touchCountMenu2: events.touchCountMenu2,
       touchCountMenu3: events.touchCountMenu3,
 
-      timeSpent: events.timeSpent,
-      eventName: events.eventName,
-
-      touchCount: events.touchCount,
       touchCountNoFilter: events.touchCountNoFilter,
       touchCountFilter1: events.touchCountFilter1,
       touchCountFilter2: events.touchCountFilter2,
@@ -315,6 +364,18 @@ export const selectors = {
       touchCountNoHat: events.touchCountNoHat,
       touchCountHat1: events.touchCountHat1,
       touchCountHat2: events.touchCountHat2,
+
+      // extra fields
+      messagePage1_2_Timer: events.messagePage1_2_Timer,
+      messagePage1_3_Timer: events.messagePage1_3_Timer,
+      messagePage1_4_Timer: events.messagePage1_4_Timer,
+      messagePage3_2_Timer: events.messagePage3_2_Timer,
+      messagePage3_3_Timer: events.messagePage3_3_Timer,
+      messagePage3_4_Timer: events.messagePage3_4_Timer,
+      messagePage4_Timer: events.messagePage4_Timer,
+      messagePage5_Timer: events.messagePage5_Timer,
+
+      total_time: events.menu1_Timer + events.menu2_Timer + events.menu3_Timer + events.messagePage1_Timer + events.messagePage2_Timer + events.messagePage3_Timer + events.noneTimer + events.filter1_Timer + events.filter2_Timer + events.filter3_Timer + events.filterNoHat_Timer + events.filterHat1_Timer + events.filterHat2_Timer + events.messagePage1_2_Timer + events.messagePage1_4_Timer + events.messagePage1_3_Timer + events.messagePage3_2_Timer + events.messagePage3_3_Timer + events.messagePage3_4_Timer + events.messagePage4_Timer + events.messagePage5_Timer,
     };
   },
   isMenuOpen: (state: ApplicationState) => {
@@ -363,7 +424,7 @@ interface SurveySubmission {
 }
 
 export const SubmitSurvey = (
-  survey: SurveySubmission,
+  survey: any,
   surveyStarted: boolean
 ): Promise<any> => {
   if (!surveyStarted) {

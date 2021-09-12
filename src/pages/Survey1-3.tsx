@@ -41,9 +41,9 @@ export const Survey13: React.FC = () => {
   return (
     <FullLayout>
       <BgAsset className='p-8 font-sans text-brown-500 text-xl'>
-        <div>Exposure to <span className="font-bold">ultraviolter (UV) rays</span>--from the sun or from artificial sources like tanning beds--is the most common cause of skin cancer.</div>
+        <div>Exposure to <span className=" text-3xl font-bold">ultraviolet (UV) rays</span>--from the sun or from artificial sources like tanning beds--is the most common cause of skin cancer.</div>
 
-        <div className="mt-20 mb-20 ml font-serif italic text-teal-700">Anyone, no matter their skin tone can get skin cancer.</div>
+        <div className="mt-20 mb-20 ml font-serif italic text-teal-700 font-bold text-2xl">Anyone, no matter their skin tone can get skin cancer.</div>
 
         
       <div className="md:mt-36">

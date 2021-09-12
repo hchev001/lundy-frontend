@@ -23,6 +23,7 @@ const BgAsset = styled.div`
 export const Survey31: React.FC = () => {
   const history = useHistory();
   const dispatch = useDispatch();
+  
   useEffect(() => {
     dispatch(actions.visitPage(new Date()));
     return () => {

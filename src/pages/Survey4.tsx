@@ -11,6 +11,7 @@ import { NoDamageGif, HatGif, SunglassesGif } from "../common/assets";
 const GifLoader = styled.img`
   height: 100%;
   width: 240px;
+  display: ${props => props.hidden ? 'none': 'block'};
 `;
 
 interface FilterViewedState {
@@ -24,12 +25,14 @@ export const Survey4: React.FC = () => {
   const history = useHistory();
   const dispatch = useDispatch();
   const [statesSeen, setStatesSeen] = useState<number[]>([]);
-  const [state, setState] = useState<FilterViewedState>({
-    noFilter: false,
-    filter1: false,
-    filter2: false,
-    filter3: false,
+
+  const [filter_time, setFilterTime] = useState({
+    start_time: new Date().getTime(),
+    belongs_to: 0
   });
+  const [filter_0_time, setFilter0Time] = useState({ time: null });
+  const [filter_1_time, setFilter1Time] = useState({ time: null });
+  const [filter_2_time, setFilter2Time] = useState({ time: null });
 
   useEffect(() => {
     dispatch(actions.visitPage(new Date()));
@@ -44,22 +47,51 @@ export const Survey4: React.FC = () => {
    */
   const [gifState, setGifState] = useState(0);
 
-  useEffect(() => {
-    dispatch(actions.visitPage(new Date()));
-    return () => {
-      if (gifState === 0) {
-        dispatch(actions.leavePage(PageNames.NO_HAT_FILTER, new Date()));
-      } else if (gifState === 1) {
-        dispatch(actions.leavePage(PageNames.HAT_1_FILTER, new Date()));
-      } else if (gifState === 2) {
-        dispatch(actions.leavePage(PageNames.HAT_2_FILTER, new Date()));
-      }
-    };
-  }, [gifState]);
+  // useEffect(() => {
+  //   dispatch(actions.visitPage(new Date()));
+  //   return () => {
+  //     if (gifState === 0) {
+  //       dispatch(actions.leavePage(PageNames.NO_HAT_FILTER, new Date()));
+  //     } else if (gifState === 1) {
+  //       dispatch(actions.leavePage(PageNames.HAT_1_FILTER, new Date()));
+  //     } else if (gifState === 2) {
+  //       dispatch(actions.leavePage(PageNames.HAT_2_FILTER, new Date()));
+  //     }
+  //   };
+  // }, [gifState]);
 
   const handleNext = () => {
     // track the button click
     dispatch(actions.click());
+
+    const {belongs_to, start_time} = filter_time;
+    const now = new Date().getTime();
+    const elapsed_time = now - start_time;
+
+    let times = {
+      filter_0: 0,
+      filter_1: 0,
+      filter_2: 0
+    }
+
+    if (belongs_to === 0) {
+      times.filter_1 = filter_1_time.time;
+      times.filter_2 = filter_2_time.time;
+      times.filter_0 = filter_0_time.time + elapsed_time;
+      
+    } else if (belongs_to === 1) {
+      times.filter_1 = filter_1_time.time + elapsed_time;
+      times.filter_2 = filter_2_time.time;
+      times.filter_0 = filter_0_time.time;
+    } else if (belongs_to === 2) {
+      times.filter_1 = filter_1_time.time;
+      times.filter_2 = filter_2_time.time + elapsed_time;
+      times.filter_0 = filter_0_time.time;
+      
+    }
+
+    dispatch(actions.setHatFilterTimes(times));
+
     if (statesSeen.length > 1) {
       history.push("/survey/5");
     }
@@ -72,10 +104,12 @@ export const Survey4: React.FC = () => {
     if (filterState === 0) {
       dispatch(actions.clickLink(Transitions.CLICK_NO_HAT));
       setGifState(0);
+
+
     } else if (filterState === 1) {
       dispatch(actions.clickLink(Transitions.CLICK_HAT_1));
       setGifState(1);
-      setState({ ...state, filter1: true });
+
 
       // if we haven't sen this filter, add it to the list of seen filters
       if (!statesSeen.includes(1)) {
@@ -84,7 +118,7 @@ export const Survey4: React.FC = () => {
     } else if (filterState === 2) {
       dispatch(actions.clickLink(Transitions.CLICK_HAT_2));
       setGifState(2);
-      setState({ ...state, filter2: true });
+
 
       // if we haven't sen this filter, add it to the list of seen filters
       if (!statesSeen.includes(2)) {
@@ -97,22 +131,19 @@ export const Survey4: React.FC = () => {
     <FullLayout>
       <div className="container">
         <div className="mb-4 p-8 container mx-auto justify-center flex align-center">
-          {gifState === 0 && (
-            <div>
-              <GifLoader src={NoDamageGif} />
-            </div>
-          )}
-          {gifState === 1 && (
-            <div>
-              <GifLoader src={SunglassesGif} />
-            </div>
-          )}
 
-          {gifState === 2 && (
             <div>
-              <GifLoader src={HatGif} />
+              <GifLoader src={NoDamageGif} hidden={gifState !== 0}/>
             </div>
-          )}
+
+            <div>
+              <GifLoader src={SunglassesGif} hidden={gifState !== 1}/>
+            </div>
+
+            <div>
+              <GifLoader src={HatGif} hidden={gifState !== 2}/>
+            </div>
+
         </div>
         <div className="flex flex-col items-center">
           <div className="px-4 container">

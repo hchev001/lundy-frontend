@@ -72,12 +72,14 @@ export const FullLayout = (props: LayoutProps) => {
   const isMenuOpen = useSelector(selectors.isMenuOpen);
 
   const handleMouseDown = (e: any) => {
+    dispatch(actions.click())
     dispatch(actions.hideMenu());
 
     e.preventDefault();
   };
 
   const handleLinkClick = (path: string): void => {
+    dispatch(actions.click());
     if (path === Paths.CONSENT_FORM) {
       dispatch(actions.clickLink(Transitions.CLICK_CONSENT_FORM));
     } else if (path === Paths.CONTACT_US) {
@@ -114,7 +116,10 @@ export const FullLayout = (props: LayoutProps) => {
         </button>
       </SideMenu>
       <Nav2
-        onClick={() => dispatch(actions.toggleMenu())}
+        onClick={() => {
+          dispatch(actions.click());
+          dispatch(actions.toggleMenu());
+        }}
         handleLinkClick={handleLinkClick}
       />
       <main className=" bg-sand-400 container mx-auto">{props.children}</main>

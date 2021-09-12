@@ -3,23 +3,26 @@ import { useDispatch, useSelector } from "react-redux";
 import { Button } from "../components";
 import { FullLayout } from "../layout/FullLayout";
 import { selectors, SubmitSurvey } from "../store/modules/Events";
+import { actions, PageNames } from "../store/modules/Events";
 
 export const RandomCode: React.FC = () => {
   const survey = useSelector(selectors.survey);
-  const [surveyId, setSurveyId] = useState("placeholder_code");
+  const [surveyId, setSurveyId] = useState("");
   const surveyStarted = useSelector(selectors.surveyStarted);
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    console.log(survey);
+    dispatch(actions.click())
+    console.log('on survey code page');
   }, [])
 
-  // useEffect(() => {
-  //   SubmitSurvey(survey, surveyStarted)
-  //     .then((r) => {
-  //       setSurveyId(r.data.data.surveyId);
-  //     })
-  //     .catch((e) => console.log(e));
-  // }, []);
+  useEffect(() => {
+    SubmitSurvey(survey, surveyStarted)
+      .then((r) => {
+        setSurveyId(r.data.data.surveyId);
+      })
+      .catch((e) => console.log(e));
+  }, []);
 
 
   return (
