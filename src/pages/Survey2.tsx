@@ -180,21 +180,21 @@ export const Survey2: React.FC = () => {
           if (belongs_to === 0) {
             setFilter0Time({
               time:
-                filter_0_time == null
+                filter_0_time.time == null
                   ? elapsed_time
                   : filter_0_time.time + elapsed_time, // else keep running sum
             });
           } else if (belongs_to === 2) {
             setFilter2Time({
               time:
-                filter_2_time == null
+                filter_2_time.time == null
                   ? elapsed_time
                   : filter_2_time.time + elapsed_time, // else keep running sum
             });
           } else if (belongs_to === 3) {
             setFilter3Time({
               time:
-                filter_3_time == null
+                filter_3_time.time== null
                   ? elapsed_time
                   : filter_3_time.time + elapsed_time, // else keep running sum
             });

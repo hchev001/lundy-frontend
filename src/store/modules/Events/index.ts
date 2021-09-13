@@ -140,7 +140,7 @@ export enum Transitions {
 
   CLICK_NO_HAT = "touchCountNoHat",
   CLICK_HAT_1 = "touchCountHat1",
-  CLICK_HAT_2 = "touchCountHat",
+  CLICK_HAT_2 = "touchCountHat2",
 
   CLICK_NO_OLD_FILTER = "touchCountNoFilter",
   CLICK_FILTER_1 = "touchCountFilter1",
@@ -333,7 +333,6 @@ export const selectors = {
     const { events } = state;
     return {
       total_clicks: events.numberOfClicks,
-      surveyId: events.surveyId,
 
       menu1_Timer: events.menu1_Timer, //whatis AR
       menu2_Timer: events.menu2_Timer, // cosnent form
