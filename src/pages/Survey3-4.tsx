@@ -21,7 +21,7 @@ export const Survey34: React.FC = () => {
     dispatch(actions.click());
 
     // go to next page
-    history.push("/survey/4");
+    history.push("/survey/5");
   }
   return (
     <FullLayout>
@@ -47,9 +47,9 @@ export const Survey34: React.FC = () => {
             regardless of cost, meet this standard.
           </div>
         </div>
-        <div className="mt-16 mb-20 ml font-serif italic text-teal-700 text-xl">
+        {/* <div className="mt-16 mb-20 ml font-serif italic text-teal-700 text-xl">
           Click <span>"next"</span> and try on the filters.
-        </div>
+        </div> */}
 
         <div className="md:mt-36">
           <Button onClick={() => handleNext()} text="Next" />
