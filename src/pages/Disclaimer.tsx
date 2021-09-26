@@ -44,11 +44,19 @@ export const Disclaimer = (props: BaseProps) => {
     <FullLayout>
       <BgAsset className="p-8">
         <div className="w-full flex flex-col justify-center items-center text-center mb-5 font-serif">
-          <h3 className="text-sm">University of Miami</h3>
-          <h4 className="text-sm font-bold my-1">
+          <h3 className="text-base">University of Miami</h3>
+          <h4 className="text-base font-bold my-1 uppercase">
             Consent to participate in a research study
           </h4>
-          <h4 className="text-sm">The Sunspot</h4>
+          <h4 className="text-base">The Sunspot</h4>
+        </div>
+        <div className="mb-3">
+          <p className="font-bold text-sm">
+            The following information describes the research study in which you
+            are being asked to participate. Please read this carefully. At the
+            end, you will be asked if you agree to take part in this research
+            study.
+          </p>
         </div>
         <div className="mb-3">
           <p>

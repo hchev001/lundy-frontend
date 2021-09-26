@@ -5,7 +5,7 @@ import { Button } from "../components/index";
 import { FullLayout } from "../layout/FullLayout";
 import { actions, PageNames } from "../store/modules/Events";
 import BeachCoursel from "../common/assets/beach_carousel.png";
-import styled from 'styled-components'
+import styled from "styled-components";
 
 const BgAsset = styled.div`
   background-image: url(${BeachCoursel});
@@ -13,7 +13,7 @@ const BgAsset = styled.div`
   background-attachment: fixed;
   background-position: right 78%;
   background-size: auto 100px;
-`
+`;
 
 interface BaseProps {
   history: any;
@@ -42,19 +42,27 @@ export const ConsentForm = (props: BaseProps) => {
   }, []);
 
   const handleGoBack = () => {
-    dispatch(actions.click())
+    dispatch(actions.click());
     history.goBack();
   };
 
   return (
     <FullLayout>
       <BgAsset className="p-8">
-      <div className="w-full flex flex-col justify-center items-center text-center mb-5 font-serif">
-          <h3 className="text-sm">University of Miami</h3>
-          <h4 className="text-sm font-bold my-1">
+        <div className="w-full flex flex-col justify-center items-center text-center mb-5 font-serif">
+          <h3 className="text-base">University of Miami</h3>
+          <h4 className="text-base font-bold my-1 uppercase">
             Consent to participate in a research study
           </h4>
-          <h4 className="text-sm">The Sunspot</h4>
+          <h4 className="text-base">The Sunspot</h4>
+        </div>
+        <div className="mb-3">
+          <p className="font-bold text-sm">
+            The following information describes the research study in which you
+            are being asked to participate. Please read this carefully. At the
+            end, you will be asked if you agree to take part in this research
+            study.
+          </p>
         </div>
         <div className="mb-3">
           <p>
@@ -150,20 +158,17 @@ export const ConsentForm = (props: BaseProps) => {
             hsro@med.miami.edu or 305-243-3195.
           </p>
         </div>
-      <div>
-        <Button
-          className='my-4'
-          disabled={false}
-          onClick={() => handleGoBack()}
-          validationMessage="Click to continue"
-          hidden={isValid}
-          text='Go Back'
-        />
-      </div>
+        <div>
+          <Button
+            className="my-4"
+            disabled={false}
+            onClick={() => handleGoBack()}
+            validationMessage="Click to continue"
+            hidden={isValid}
+            text="Go Back"
+          />
+        </div>
       </BgAsset>
-      
-      
-
     </FullLayout>
   );
 };
