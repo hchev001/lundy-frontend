@@ -44,36 +44,32 @@ export const Disclaimer = (props: BaseProps) => {
     <FullLayout>
       <BgAsset className="p-8">
         <div className="w-full flex flex-col justify-center items-center text-center mb-5 font-serif">
-          <h3 className="text-3xl">Sunspot</h3>
-          <h4 className="text-sm mt-1">
+          <h3 className="text-sm">University of Miami</h3>
+          <h4 className="text-sm font-bold my-1">
             Consent to participate in a research study
           </h4>
-          <h4 className="text-sm">University of Miami</h4>
+          <h4 className="text-sm">The Sunspot</h4>
         </div>
         <div className="mb-3">
           <p>
             <span className="font-bold">Purpose: </span> You are invited to take
             part in a research study. Doing so is voluntary. The purpose of this
-            research is to test and to evaluate the effectiveness of a website
-            application, SunSpot, which is designed to provide an interactive
-            experience for the users. The study will take about 15 to 18 minutes
-            to finish.
+            research is to test and learn about a website application, SunSpot,
+            which is designed to provide an interactive experience for the
+            users. The study will take about 20 minutes to finish. You must be
+            at least 18 years old and live in the United States to participate
+            in the study.
           </p>
         </div>
         <div className="mb-3">
           <p>
-            <span className="font-bold">Procedures: </span>You might be asked to
-            turn on your device’s front camera. You will thoroughly interact
-            with the website and its features. Then, you will be asked to
-            complete a brief survey on your perceptions regarding your
-            experience.
-          </p>
-        </div>
-        <div className="mb-3">
-          <p>
-            <span className="font-bold">Requirements: </span>You must be at
-            least 18 years old and live in the United States to participate in
-            the study.
+            <span className="font-bold">Procedures: </span>You will be randomly
+            assigned to a condition which might ask you to turn on your device’s
+            front camera. You will interact with the website and its features.
+            Then, you will be asked to complete a brief survey on your
+            attitudes, beliefs, about the interaction, as well as your
+            demographic information. In the end, you will leave your email
+            address which will solely be used for your compensation.
           </p>
         </div>
         <div className="mb-3">
@@ -98,12 +94,11 @@ export const Disclaimer = (props: BaseProps) => {
         </div>
         <div className="mb-3">
           <p>
-            <span className="font-bold">Voluntary Participation: </span>Your
+            <span className="font-bold">Voluntary Participation: </span>YYour
             participation in this study is voluntary. You do not have to be in
             this study if you do not want to, and you can leave the study at any
-            time. You will not lose any services, benefits, or rights you would
-            normally have if you chose not to be in the study or if you leave
-            the study early.
+            time. Whatever you decide, you will not be penalized or lose
+            benefits.
           </p>
         </div>
         <div className="mb-3">
@@ -115,12 +110,24 @@ export const Disclaimer = (props: BaseProps) => {
             You may choose to withdraw your data at the end of the survey when
             the information is revealed.
           </p>
-        </div>
-        <div>
-          <p className="mb-3">
+          <p>
             At the end of this study, the researchers may publish their
             findings. Information will be presented in summary format and you
             will not be identified in any publications or presentations.
+          </p>
+        </div>
+        <div className="mb-3">
+          <p>
+            <span className="font-bold">Conflict of Interest: </span>Di Lun and
+            Armando Carrasquillo have disclosed that they have a personal
+            interest related to this study. The University of Miami has an
+            interest related to the study. Please ask any questions to assure
+            yourself that this relationship has not overly influenced the
+            conduct of this research study. If you require further information,
+            please contact the study doctor or HRSO at 305-243-3195 to ask
+            questions or discuss concerns. If you have any questions regarding
+            disclosure review and the conflict management process at the
+            University of Miami, please call 305-243-0877.
           </p>
           <p className="mb-3">
             By clicking “next”, you confirm that you are 18 years old or older,
@@ -130,10 +137,11 @@ export const Disclaimer = (props: BaseProps) => {
           </p>
           <p className="mb-3">
             If you have any questions or concerns about the research, please
-            contact Ms. Lun at dxl744@miami.edu. If you have questions regarding
-            your rights as a research participant, contact the University of
-            Miami, Human Subject Research Office at hsro@med.miami.edu or
-            305-243-3195.
+            contact Ms. Lun at dxl744@miami.edu under the supervision of Dr.
+            Carcioppolo (n.carcioppolo@miami.edu). If you have questions
+            regarding your rights as a research participant, contact the
+            University of Miami, Human Subject Research Office at
+            hsro@med.miami.edu or 305-243-3195.
           </p>
         </div>
 
