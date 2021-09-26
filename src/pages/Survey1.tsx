@@ -48,8 +48,8 @@ export const Survey1: React.FC = () => {
           <br />
           <br />
           <ul className='pl-2' >
-            <li>Nearly <span className='text-teal-700 font-bold'>5 milliion</span> people are treated for skin cancer at a cost of more than $8 billion.</li>
-            <li>There are about <span className='text-teal-700 font-bold'>76,000</span> new cases of and <span className='text-teal-700 font-bold'>9,000</span> deaths from melanoma, the dealiest from of skin cancer.</li>
+            <li>Nearly <span className='text-teal-700 font-bold'>5 million</span> people are treated for skin cancer at a cost of more than <span className='text-teal-700 font-bold'>$8 billion</span>.</li>
+            <li>There are about <span className='text-teal-700 font-bold'>76,000</span> new cases of and <span className='text-teal-700 font-bold'>9,000</span> deaths from melanoma, the deadliest from of skin cancer.</li>
           </ul>
         </div>
       <div className="md:mt-36">
