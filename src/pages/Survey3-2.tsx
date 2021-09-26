@@ -37,7 +37,7 @@ export const Survey32: React.FC = () => {
               <img src={hand_spf_img} className="h-40 w-40 mb-4" />
             </div>
             <div className='leading-normal'>
-              Sunscreen works best when used with share or clothes, and it must
+              Sunscreen works best when used with shade or clothes, and it must
               be re-applied every 2 hours and after swimming, sweating, or
               toweling off.
             </div>

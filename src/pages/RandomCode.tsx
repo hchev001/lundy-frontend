@@ -38,8 +38,7 @@ export const RandomCode: React.FC = () => {
         </div>
 
         <div className="my-2">
-          NOTE: To complete this study and receive your rewards or incentives
-          through the sampling company, please be sure to record the correct ID
+          NOTE: To complete this study and receive your rewards, please be sure to record the correct ID
           and type it in the follow up survey.
         </div>
 

@@ -47,7 +47,7 @@ export const Survey12: React.FC = () => {
 
         <div className='mt-6 mb-6'>
           <ul className='pl-2 leading-normal' >
-            <li><span className='text-teal-700 font-bold'>Every hour</span> there are <span className='text-teal-700 font-bold'>more than 2</span> people dead of skin cancer in the U.S.</li>
+            <li><span className='text-teal-700 font-bold'>Every hour</span> there are <span className='text-teal-700 font-bold'>more than 2</span> people die of skin cancer in the U.S.</li>
             <li>
               <span className='text-teal-700 font-bold'>1 in 5</span> Americans will develop skin cancer by the age of 70
             </li>
