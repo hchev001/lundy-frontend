@@ -33,7 +33,7 @@ export const Survey34: React.FC = () => {
           <div className='mb-4 leading-normal'>
             <span className="font-bold text-teal-700 text-2xl">Hat: </span>For the
             most protection, wear a hat with a brim all the way around that
-            shades the face, ears, and back of the neck. A darker hat may
+            shades the face, ears, and the back of the neck. A darker hat may
             offer more UV protection.
           </div>
           <div className="mb-4 leading-normal">
