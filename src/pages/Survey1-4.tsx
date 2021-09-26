@@ -46,7 +46,7 @@ export const Survey14: React.FC = () => {
         {/* <div className="mt-20 mb-20 ml font-serif italic text-teal-700">Click <span className="font-bold">"next"</span> and try on the filters.</div> */}
 
         
-      <div className="md:mt-36">
+      <div className="mt-20 md:mt-36">
         <Button onClick={() => handleNext()} text='Next'/>
       </div>
       </BgAsset>
