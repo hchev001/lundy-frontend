@@ -81,7 +81,6 @@ export const Survey4: React.FC = () => {
       times.filter_0 = filter_0_time.time;
     }
 
-    console.log(times, 'what are the times before dispatching?');
 
     dispatch(actions.setHatFilterTimes(times));
 

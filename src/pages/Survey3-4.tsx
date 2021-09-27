@@ -21,7 +21,7 @@ export const Survey34: React.FC = () => {
     dispatch(actions.click());
 
     // go to next page
-    history.push("/survey/5");
+    history.push("/survey/4");
   }
   return (
     <FullLayout>

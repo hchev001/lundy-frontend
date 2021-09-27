@@ -36,14 +36,14 @@ export const Survey14: React.FC = () => {
     dispatch(actions.click());
 
     // go to next page
-    history.push("/survey/3");
+    history.push("/survey/2");
   }
   return (
     <FullLayout>
       <BgAsset className='p-8 font-sans text-brown-500 text-xl'>
         <div><span className="font-bold text-2xl">UV and sunlight exposures</span> are responsible for <span className={"text-teal-700 font-bold text-2xl"}>90%</span> of visible changes to the skin, including wrinkles, fine lines, and pigmentation.</div>
 
-        {/* <div className="mt-20 mb-20 ml font-serif italic text-teal-700">Click <span className="font-bold">"next"</span> and try on the filters.</div> */}
+        <div className="mt-20 mb-20 ml font-serif italic text-teal-700">Click <span className="font-bold">"next"</span> and try on the filters.</div>
 
         
       <div className="mt-20 md:mt-36">
